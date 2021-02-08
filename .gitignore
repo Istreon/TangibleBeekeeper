@@ -25,7 +25,7 @@ hs_err_pid*
 
 #custom
 *.csv
-*.png
+#*.png
 
 # UNITY
 # This .gitignore file should be placed at the root of your Unity project directory
