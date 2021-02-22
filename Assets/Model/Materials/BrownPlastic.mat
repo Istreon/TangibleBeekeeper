@@ -70,6 +70,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_A9C64337: 1
+    - Vector1_597980B4: 0.566
+    - Vector1_8610B8C8: 0.1
     - _ActiveClipping: 0
     - _AlphaClip: 0
     - _Blend: 0
@@ -97,7 +99,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Test: {r: 0.5943396, g: 0.47775728, b: 0.23829654, a: 0}
+    - Test: {r: 0.6, g: 0.4862745, b: 0.34117648, a: 0}
     - _BaseColor: {r: 0.51886785, g: 0.3625042, b: 0.20803663, a: 1}
     - _Color: {r: 0.5188679, g: 0.36250427, b: 0.20803666, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
