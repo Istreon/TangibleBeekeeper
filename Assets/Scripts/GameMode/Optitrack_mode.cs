@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class Optitrack_mode : MonoBehaviour
 {
@@ -24,23 +25,26 @@ public class Optitrack_mode : MonoBehaviour
     {
         foreach (GameObject g in trackedObjects)
         {
-            //Enable or disable physics on tracked object depending on active OptiTrack
-            Rigidbody r = g.GetComponent<Rigidbody>();
-            if (r != null)
+            if(g!=null)
             {
-                r.isKinematic = active;
-            }
-            //Enable or disable tracking script on tracked object depending on active OptiTrack
-            OptitrackRigidBody o = g.GetComponent<OptitrackRigidBody>();
-            if (o != null)
-            {
-                o.enabled = active;
-            }
+                //Enable or disable physics on tracked object depending on active OptiTrack
+                Rigidbody r = g.GetComponent<Rigidbody>();
+                if (r != null)
+                {
+                    r.isKinematic = active;
+                }
+                //Enable or disable tracking script on tracked object depending on active OptiTrack
+                OptitrackRigidBody o = g.GetComponent<OptitrackRigidBody>();
+                if (o != null)
+                {
+                    o.enabled = active;
+                }
 
-            ShockDetection s = g.GetComponent<ShockDetection>();
-            if(s!=null)
-            {
-                s.enabled = !active;
+                ShockDetection s = g.GetComponent<ShockDetection>();
+                if (s != null)
+                {
+                    s.enabled = !active;
+                }
             }
         }
     }
