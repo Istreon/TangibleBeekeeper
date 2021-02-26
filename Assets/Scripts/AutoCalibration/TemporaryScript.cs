@@ -14,13 +14,11 @@ public class TemporaryScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         if(Input.GetKeyDown(KeyCode.A))
         {
             this.transform.position += new Vector3(-step, 0.0f, 0.0f);
