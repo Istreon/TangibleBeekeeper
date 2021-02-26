@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9c1b82155790bf445bde6b67b5043c48
+guid: 88a546809610896469517ebedd2fc7b5
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Corps_brun
+      name: Abeille_couleur
     second: {fileID: 2100000, guid: 86d38224341bb354b9d13ddd95c1f438, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Corps_jaune
-    second: {fileID: 2100000, guid: caeba70843b5a9d458af9f5235c6613c, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
