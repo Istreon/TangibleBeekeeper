@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 40d667ddf329aa24f99abe72e9407603
+guid: 261050dc104e2b0418b356f026767f48
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -7,13 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 64e95c8e94bccbb408672a03103d4eb3, type: 2}
+      name: Leve_cadre_jaune
+    second: {fileID: 2100000, guid: bcb7e38ee58351e478fd9671ab2ea441, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Toit_couleur_principale
-    second: {fileID: 2100000, guid: 64e95c8e94bccbb408672a03103d4eb3, type: 2}
+      name: Leve_cadre_metal
+    second: {fileID: 2100000, guid: d9b674c6a20a1eb4cac84f3bf9e7ac0e, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -46,7 +46,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1

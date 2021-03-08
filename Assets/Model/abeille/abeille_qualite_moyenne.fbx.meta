@@ -7,13 +7,38 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Aile_brun
+    second: {fileID: 2100000, guid: 9ccfd4182dc61304189f5477fd2252bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aile_transparent
+    second: {fileID: 2100000, guid: 2da9ec91e08a5cd43bda51f7cad1dc88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Corps_brun
-    second: {fileID: 2100000, guid: 86d38224341bb354b9d13ddd95c1f438, type: 2}
+    second: {fileID: 2100000, guid: c077639fa7b527b45a7b576dfc44d0b7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Corps_jaune
-    second: {fileID: 2100000, guid: caeba70843b5a9d458af9f5235c6613c, type: 2}
+    second: {fileID: 2100000, guid: f46fd13af332d884c96585a706c65b59, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mandibulle_noir
+    second: {fileID: 2100000, guid: 2e19c0fff3020664c9d8f805e7894029, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Oeil_noir
+    second: {fileID: 2100000, guid: 2e19c0fff3020664c9d8f805e7894029, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Patte_marron
+    second: {fileID: 2100000, guid: 2e19c0fff3020664c9d8f805e7894029, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

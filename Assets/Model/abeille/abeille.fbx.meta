@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 40d667ddf329aa24f99abe72e9407603
+guid: 9c1b82155790bf445bde6b67b5043c48
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -7,13 +7,43 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 64e95c8e94bccbb408672a03103d4eb3, type: 2}
+      name: Aile_brun
+    second: {fileID: 2100000, guid: 9ccfd4182dc61304189f5477fd2252bb, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Toit_couleur_principale
-    second: {fileID: 2100000, guid: 64e95c8e94bccbb408672a03103d4eb3, type: 2}
+      name: Aile_transparent
+    second: {fileID: 2100000, guid: 2da9ec91e08a5cd43bda51f7cad1dc88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Antenne_noir
+    second: {fileID: 2100000, guid: 2e19c0fff3020664c9d8f805e7894029, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Corps_brun
+    second: {fileID: 2100000, guid: c077639fa7b527b45a7b576dfc44d0b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Corps_jaune
+    second: {fileID: 2100000, guid: f46fd13af332d884c96585a706c65b59, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mandibulle_noir
+    second: {fileID: 2100000, guid: 2e19c0fff3020664c9d8f805e7894029, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Oeil_noir
+    second: {fileID: 2100000, guid: 2e19c0fff3020664c9d8f805e7894029, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Patte_marron
+    second: {fileID: 2100000, guid: 2e19c0fff3020664c9d8f805e7894029, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -46,7 +76,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
