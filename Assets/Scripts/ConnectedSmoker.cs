@@ -10,12 +10,13 @@ public class ConnectedSmoker : MonoBehaviour
 
     internal Boolean socketReady = false;
 
-    TcpClient mySocket;
-    NetworkStream theStream;
-    StreamWriter theWriter;
-    StreamReader theReader;
-    String Host = "192.168.0.27";
-    Int32 Port = 80;
+    private TcpClient mySocket;
+    private NetworkStream theStream;
+    private StreamReader theReader;
+
+    [SerializeField]
+    private String Host = "10.29.238.39";
+    private Int32 Port = 80;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,6 @@ public class ConnectedSmoker : MonoBehaviour
             mySocket = new TcpClient(Host, Port);
             theStream = mySocket.GetStream(); 
             theStream.ReadTimeout = 1;
-            theWriter = new StreamWriter(theStream);
             theReader = new StreamReader(theStream);
             socketReady = true;         
         }
@@ -57,7 +57,6 @@ public class ConnectedSmoker : MonoBehaviour
     public void closeSocket() {
         if (!socketReady)
             return;
-        theWriter.Close();
         theReader.Close();
         mySocket.Close();
         socketReady = false;
