@@ -18,18 +18,26 @@ public class ConnectedSmoker : MonoBehaviour
     private String Host = "10.29.238.39";
     private Int32 Port = 80;
 
+
+    private Smoker smokerControlled;
+
     // Start is called before the first frame update
     void Start()
     {
         setupSocket();
-        readSocket();   
+        readSocket();
+        smokerControlled = this.GetComponent<Smoker>();
     }
 
     // Update is called once per frame
     void Update()
     {
         string msg=readSocket();
-        if(msg!="") Debug.Log(msg.ToString());
+        if (msg != "")
+        {
+           //Debug.Log(msg.ToString());
+            if (msg.Equals("On") && smokerControlled!=null) smokerControlled.ReleaseSmoke();
+        }
     }
 
     public void setupSocket() { 

@@ -21,11 +21,20 @@ public class Smoker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        if(time>delay)
+
+        if(time<=delay)
+        {
+            time += Time.deltaTime;
+        }
+    }
+
+
+    public void ReleaseSmoke()
+    {
+        if (time > delay)
         {
             time = 0.0f;
-            GameObject smoke= Instantiate(smokePrefab, smokeStartPosition.position, smokeStartPosition.rotation);
+            GameObject smoke = Instantiate(smokePrefab, smokeStartPosition.position, smokeStartPosition.rotation);
             smoke.transform.parent = smokeStartPosition.transform;
         }
     }
