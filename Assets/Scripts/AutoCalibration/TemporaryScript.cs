@@ -21,28 +21,28 @@ public class TemporaryScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.A))
         {
-            this.transform.position += new Vector3(-step, 0.0f, 0.0f);
+            vive_reference.transform.position += new Vector3(-step, 0.0f, 0.0f);
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            this.transform.position += new Vector3(step, 0.0f, 0.0f);
+            vive_reference.transform.position += new Vector3(step, 0.0f, 0.0f);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            this.transform.position += new Vector3(0.0f, -step, 0.0f);
+            vive_reference.transform.position += new Vector3(0.0f, -step, 0.0f);
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            this.transform.position += new Vector3(0.0f, step, 0.0f);
+            vive_reference.transform.position += new Vector3(0.0f, step, 0.0f);
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            this.transform.position += new Vector3(0.0f, 0.0f, -step);
+            vive_reference.transform.position += new Vector3(0.0f, 0.0f, -step);
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            this.transform.position += new Vector3(0.0f, 0.0f, step);
+            vive_reference.transform.position += new Vector3(0.0f, 0.0f, step);
         }
         
 
