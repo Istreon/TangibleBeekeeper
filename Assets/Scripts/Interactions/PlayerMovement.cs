@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,11 +31,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.forward * z; 
         transform.Rotate(Vector3.up * x);
         controller.Move(move * speed * Time.deltaTime);
-   
-
-
-
-
     }
 
 

@@ -10,7 +10,7 @@ public class Smoker : MonoBehaviour
     private Transform smokeStartPosition;
 
 
-    private float delay = 1.0f;
+    private float delay = 0.01f;
     private float time = 0.0f;
     // Start is called before the first frame update
     void Start()
