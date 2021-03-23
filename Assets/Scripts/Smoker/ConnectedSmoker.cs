@@ -20,6 +20,7 @@ public class ConnectedSmoker : MonoBehaviour
 
 
     private Smoker smokerControlled;
+    private bool active=false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,14 @@ public class ConnectedSmoker : MonoBehaviour
         if (msg != "")
         {
            //Debug.Log(msg.ToString());
-            if (msg.Equals("On") && smokerControlled!=null) smokerControlled.ReleaseSmoke();
+            if (!active && msg.Equals("On") && smokerControlled!=null) {
+                smokerControlled.ReleaseSmoke();
+                active=true;
+            }
+            if (active && msg.Equals("Off")) {
+                active=false;
+            }
+
         }
     }
 

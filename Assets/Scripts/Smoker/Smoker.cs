@@ -9,9 +9,19 @@ public class Smoker : MonoBehaviour
     [SerializeField]
     private Transform smokeStartPosition;
 
+    //Smoke release parameters
+    private float delayBetweenSmoke = 0.01f;
+    private float timeSinceLastSmoke = 0.0f;
 
-    private float delay = 0.01f;
-    private float time = 0.0f;
+    //Smoker animation parameters
+    [SerializeField]
+    private GameObject pumpClassicVersion;
+    private GameObject pumpPressedVersion;
+
+    private bool pumpActivated=false;
+    private float activationDuration=0.4f;
+    private float activationTime=0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,20 +32,37 @@ public class Smoker : MonoBehaviour
     void Update()
     {
 
-        if(time<=delay)
+        if(timeSinceLastSmoke<=delayBetweenSmoke)
         {
-            time += Time.deltaTime;
+            timeSinceLastSmoke += Time.deltaTime;
+        }
+
+        if(pumpActivated) {
+            activationTime+= Time.deltaTime;
+            if(activationTime>activationDuration) {
+                pumpActivated=false;
+                SmokerAnimation(false);
+            }
         }
     }
 
 
     public void ReleaseSmoke()
     {
-        if (time > delay)
+        if (timeSinceLastSmoke > delayBetweenSmoke)
         {
-            time = 0.0f;
+            timeSinceLastSmoke = 0.0f;
             GameObject smoke = Instantiate(smokePrefab, smokeStartPosition.position, smokeStartPosition.rotation);
             smoke.transform.parent = smokeStartPosition.transform;
+
+            //Change visual smoker state
+            pumpActivated=true;
+            SmokerAnimation(true);
         }
+    }
+
+    public void SmokerAnimation(bool activate) {
+        pumpClassicVersion.SetActive(!activate);
+        pumpPressedVersion.SetActive(activate);
     }
 }
