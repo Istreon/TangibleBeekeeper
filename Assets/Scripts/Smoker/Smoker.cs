@@ -16,6 +16,7 @@ public class Smoker : MonoBehaviour
     //Smoker animation parameters
     [SerializeField]
     private GameObject pumpClassicVersion;
+    [SerializeField]
     private GameObject pumpPressedVersion;
 
     private bool pumpActivated=false;
@@ -57,6 +58,7 @@ public class Smoker : MonoBehaviour
 
             //Change visual smoker state
             pumpActivated=true;
+            activationTime = 0.0f;
             SmokerAnimation(true);
         }
     }
