@@ -6,7 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes: []
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 0}
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: f280e0594ed4efe4e9f2d289b9e5845f,
+      type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: b6e28b89e9cb26e40b51a2cae0b80b76,
       type: 2}
     com.unity.xr.magicleap.magic_leap_settings: {fileID: 0}

@@ -12,13 +12,13 @@ public class GameModeManage : MonoBehaviour
     private bool activeOptiTrack = false;
 
     [SerializeField]
-    private GameObject VR_Mode;
+    private GameObject Oculus_Mode;
 
     [SerializeField]
     private GameObject MouseKeyBoard_Mode;
 
-    [SerializeField]
-    private GameObject OptiTrack_Mode;
+    //[SerializeField]
+    //private GameObject OptiTrack_Mode;
 
 
 
@@ -44,10 +44,10 @@ public class GameModeManage : MonoBehaviour
 
 
         //Enable or disable mode
-        VR_Mode.SetActive(vrPresent);
+        Oculus_Mode.SetActive(vrPresent);
         XRSettings.enabled=vrPresent;
         MouseKeyBoard_Mode.SetActive(!vrPresent);
-        OptiTrack_Mode.SetActive(activeOptiTrack);
+        //OptiTrack_Mode.SetActive(activeOptiTrack);
 
 
     }
