@@ -14,57 +14,24 @@ public class BeeFakeBehaviourRigidbody : MonoBehaviour
     private float height = 0.7f;
 
 
-    private Vector3 nextObjective;
-
     private Rigidbody beeBody;
 
-
-    private Vector3 directionVector;
-
-
-    private float delay=3.0f;
-    private float time;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        nextObjective = this.transform.position;
-        updateNextObjective();
         beeBody = GetComponent<Rigidbody>();
-        time = 0;
  
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
-
+        beeBody.AddForce(new Vector3((Random.value-0.5f)/1000.0f, (Random.value-0.5f)/1000.0f, (Random.value-0.5f)/1000.0f));
+        this.transform.LookAt(this.transform.position + beeBody.velocity);
 
     }
 
-    private void FixedUpdate()
-    {
-        time += Time.deltaTime;
-        if (Vector3.Distance(transform.position, nextObjective) > 0.05f && time<delay)
-        {
-            this.transform.LookAt(this.transform.position + beeBody.velocity);
-            beeBody.velocity = directionVector * beeSpeed;
-        }
-        else
-        {
-            updateNextObjective();
-        }
-    }
-
-    void updateNextObjective()
-    {
-        time=0;
-        delay = Random.value * 10.0f + 3.0f;
-        Vector3 temp = Random.insideUnitCircle * diameter;
-        nextObjective = new Vector3(temp.x + areaOrigin.position.x, areaOrigin.position.y + Random.value * height * 2 - height, areaOrigin.position.z + temp.y);
-        //this.transform.LookAt(nextObjective);
-        directionVector = (nextObjective - this.transform.position).normalized;
-    }
 }
