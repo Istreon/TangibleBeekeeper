@@ -6,7 +6,7 @@ public class AnimateWings : MonoBehaviour
 {
 
     [SerializeField]
-    private Transform [] positions;
+    private GameObject [] wings;
 
 
 
@@ -17,19 +17,24 @@ public class AnimateWings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        nbPosition = positions.Length;
+        nbPosition = wings.Length;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
         if (actualPosition == nbPosition - 1) direction = -1;
         if (actualPosition == 0) direction = 1;
         actualPosition = actualPosition + direction % nbPosition;
-
+        /*
         this.transform.localPosition = positions[actualPosition].localPosition;
-        this.transform.localRotation = positions[actualPosition].localRotation;
+        this.transform.localRotation = positions[actualPosition].localRotation;*/
+
+        foreach(GameObject w in wings)
+        {
+            w.SetActive(false);
+        }
+        wings[actualPosition].SetActive(true);
       
 
     }
