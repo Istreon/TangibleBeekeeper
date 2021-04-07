@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Catchable
   - InteractiveWithSwitchButton
+  - BeeArea
   layers:
   - Default
   - TransparentFX
