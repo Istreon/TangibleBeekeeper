@@ -13,6 +13,7 @@ public class Smoker : MonoBehaviour
     private float delayBetweenSmoke = 0.01f;
     private float timeSinceLastSmoke = 0.0f;
 
+    /*
     //Smoker animation parameters
     [SerializeField]
     private GameObject pumpClassicVersion;
@@ -22,6 +23,30 @@ public class Smoker : MonoBehaviour
     private bool pumpActivated=false;
     private float activationDuration=0.4f;
     private float activationTime=0.0f;
+    */
+
+
+    [Header("Wood planch and his open/closed references")]
+    [SerializeField]
+    private GameObject woodPlanch;
+    [SerializeField]
+    private Transform openWoodPlanch;
+    [SerializeField]
+    private Transform closedWoodPlanch;
+
+    [Header("Leather part and his open/closed references")]
+    [SerializeField]
+    private GameObject leatherPart;
+    [SerializeField]
+    private Transform openLeather;
+    [SerializeField]
+    private Transform closedLeather;
+
+
+
+    [SerializeField]
+    [Range(0.0f, 1.0f)]
+    private float state;
 
     // Start is called before the first frame update
     void Start()
@@ -37,14 +62,7 @@ public class Smoker : MonoBehaviour
         {
             timeSinceLastSmoke += Time.deltaTime;
         }
-
-        if(pumpActivated) {
-            activationTime+= Time.deltaTime;
-            if(activationTime>activationDuration) {
-                pumpActivated=false;
-                SmokerAnimation(false);
-            }
-        }
+        SmokerAnimation();
     }
 
 
@@ -55,16 +73,16 @@ public class Smoker : MonoBehaviour
             timeSinceLastSmoke = 0.0f;
             GameObject smoke = Instantiate(smokePrefab, smokeStartPosition.position, smokeStartPosition.rotation);
             smoke.transform.parent = smokeStartPosition.transform;
-
-            //Change visual smoker state
-            pumpActivated=true;
-            activationTime = 0.0f;
-            SmokerAnimation(true);
         }
     }
 
-    public void SmokerAnimation(bool activate) {
-        pumpClassicVersion.SetActive(!activate);
-        pumpPressedVersion.SetActive(activate);
+    public void SmokerAnimation()
+    {
+        woodPlanch.transform.localPosition = Vector3.Lerp(openWoodPlanch.localPosition, closedWoodPlanch.localPosition, state);
+        woodPlanch.transform.localRotation = Quaternion.Lerp(openWoodPlanch.localRotation, closedWoodPlanch.localRotation, state);
+
+        leatherPart.transform.localPosition = Vector3.Lerp(openLeather.localPosition, closedLeather.localPosition, state);
+        leatherPart.transform.localRotation = Quaternion.Lerp(openLeather.localRotation, closedLeather.localRotation, state);
+        leatherPart.transform.localScale = Vector3.Lerp(openLeather.localScale, closedLeather.localScale, state);
     }
 }
