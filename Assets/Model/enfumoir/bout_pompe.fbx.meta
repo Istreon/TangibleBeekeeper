@@ -7,12 +7,17 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Cuir
+    second: {fileID: 2100000, guid: aec98c7fae0f21d4bba0517341bfd737, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Pompe_cuir
     second: {fileID: 2100000, guid: aec98c7fae0f21d4bba0517341bfd737, type: 2}
   materials:
     materialImportMode: 1
-    materialName: 0
-    materialSearch: 1
+    materialName: 1
+    materialSearch: 0
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
