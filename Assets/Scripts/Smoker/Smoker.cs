@@ -13,17 +13,13 @@ public class Smoker : MonoBehaviour
     private float delayBetweenSmoke = 0.01f;
     private float timeSinceLastSmoke = 0.0f;
 
-    /*
+    
     //Smoker animation parameters
-    [SerializeField]
-    private GameObject pumpClassicVersion;
-    [SerializeField]
-    private GameObject pumpPressedVersion;
 
     private bool pumpActivated=false;
     private float activationDuration=0.4f;
     private float activationTime=0.0f;
-    */
+    
 
 
     [Header("Wood planch and his open/closed references")]
@@ -48,6 +44,9 @@ public class Smoker : MonoBehaviour
     [Range(0.0f, 1.0f)]
     private float state;
 
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +61,15 @@ public class Smoker : MonoBehaviour
         {
             timeSinceLastSmoke += Time.deltaTime;
         }
+        if(pumpActivated)
+        {
+            activationTime += Time.deltaTime;
+            if (activationTime > activationDuration)
+            {
+                pumpActivated = false;
+                state = 0.0f;
+            }
+        }
         SmokerAnimation();
     }
 
@@ -73,7 +81,13 @@ public class Smoker : MonoBehaviour
             timeSinceLastSmoke = 0.0f;
             GameObject smoke = Instantiate(smokePrefab, smokeStartPosition.position, smokeStartPosition.rotation);
             smoke.transform.parent = smokeStartPosition.transform;
+
+            pumpActivated = true;
+            activationTime = 0.0f;
+            state = 1.0f;
         }
+
+       
     }
 
     public void SmokerAnimation()
