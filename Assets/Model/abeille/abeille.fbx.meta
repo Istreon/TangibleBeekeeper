@@ -12,7 +12,57 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Aile_brun.002
+    second: {fileID: 2100000, guid: 9ccfd4182dc61304189f5477fd2252bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aile_brun.003
+    second: {fileID: 2100000, guid: 9ccfd4182dc61304189f5477fd2252bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aile_brun.004
+    second: {fileID: 2100000, guid: 9ccfd4182dc61304189f5477fd2252bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aile_brun.005
+    second: {fileID: 2100000, guid: 9ccfd4182dc61304189f5477fd2252bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aile_brun.006
+    second: {fileID: 2100000, guid: 9ccfd4182dc61304189f5477fd2252bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Aile_transparent
+    second: {fileID: 2100000, guid: 2da9ec91e08a5cd43bda51f7cad1dc88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aile_transparent.002
+    second: {fileID: 2100000, guid: 2da9ec91e08a5cd43bda51f7cad1dc88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aile_transparent.003
+    second: {fileID: 2100000, guid: 2da9ec91e08a5cd43bda51f7cad1dc88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aile_transparent.004
+    second: {fileID: 2100000, guid: 2da9ec91e08a5cd43bda51f7cad1dc88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aile_transparent.005
+    second: {fileID: 2100000, guid: 2da9ec91e08a5cd43bda51f7cad1dc88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aile_transparent.006
     second: {fileID: 2100000, guid: 2da9ec91e08a5cd43bda51f7cad1dc88, type: 2}
   - first:
       type: UnityEngine:Material
