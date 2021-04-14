@@ -6,14 +6,11 @@ public class BeeFakeBehaviourRigidbody : MonoBehaviour
 {
     [SerializeField]
     private GameObject beeArea;
-    private Collider areaCollider;
 
     [SerializeField]
     private float beeSpeed;
-
-    private float diameter = 3.0f;
-    private float height = 0.7f;
-
+    [SerializeField]
+    private float maxSpeed = 3.0f;
 
     private Rigidbody beeBody;
 
@@ -21,11 +18,12 @@ public class BeeFakeBehaviourRigidbody : MonoBehaviour
     private float power = 0.2f;
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         beeBody = GetComponent<Rigidbody>();
-        areaCollider = beeArea.GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -40,6 +38,14 @@ public class BeeFakeBehaviourRigidbody : MonoBehaviour
 
         beeBody.AddForce(new Vector3((Random.value-0.5f)/1000.0f, (Random.value-0.5f)/1000.0f, (Random.value-0.5f)/1000.0f));
         this.transform.LookAt(this.transform.position + beeBody.velocity);
+
+        float temp = Vector3.Distance(beeBody.velocity, new Vector3());
+
+        //Limit bee speed to a max value
+        if(temp>maxSpeed)
+        {
+            beeBody.velocity = (beeBody.velocity.normalized) * maxSpeed;
+        }
 
     }
 
