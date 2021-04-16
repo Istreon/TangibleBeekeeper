@@ -29,6 +29,7 @@ public class OffsetGrab : XRGrabInteractable
         interactor.attachTransform.rotation = hasAttach ? attachTransform.rotation : transform.rotation;
     }
 
+    [System.Obsolete]
     protected override void OnSelectExiting(XRBaseInteractor interactor)
     {
         base.OnSelectExiting(interactor);
