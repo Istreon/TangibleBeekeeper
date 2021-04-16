@@ -11,7 +11,6 @@ public class CatcherCursor : MonoBehaviour
     private GameObject catchedObject;
     private bool catchableDetected=false;
     private bool catched = false;
-    private float scale = 0.02f;
 	
 
     // Start is called before the first frame update

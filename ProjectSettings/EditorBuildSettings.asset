@@ -4,11 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 0}
-    Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: b6e28b89e9cb26e40b51a2cae0b80b76,
-      type: 2}
-    com.unity.xr.magicleap.magic_leap_settings: {fileID: 0}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 50102ac55ade7b747b314b038574cd56,
-      type: 2}
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 10cc54e184b3b3a4a8a9be9a5d747a42, type: 2}
+    Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: bd8cd76634cedc846aa6fc5dd1207e48, type: 2}
+    com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: e7b711d11417c1740821ae83e921326e, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d70853bf686061547a0fcbc48648dc0d, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 67df5722c237e464c82bcc124f732974, type: 2}
