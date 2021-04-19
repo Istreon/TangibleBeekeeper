@@ -18,7 +18,6 @@ public class ConnectedSmoker : MonoBehaviour
     private String Host = "10.29.238.39";
     private Int32 Port = 80;
 
-
     private Smoker smokerControlled;
     private bool active=false;
 
@@ -33,6 +32,9 @@ public class ConnectedSmoker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+ 
+
         string msg=readSocket();
         if (msg != "")
         {
@@ -58,6 +60,7 @@ public class ConnectedSmoker : MonoBehaviour
         }
         catch (Exception e) {
             Debug.Log("Socket error: " + e);
+            Destroy(GetComponent<ConnectedSmoker>());
         }
     }
     public String readSocket() { 
