@@ -29,12 +29,19 @@ public class ConnectedSmoker : MonoBehaviour
         smokerControlled = this.GetComponent<Smoker>();
     }
 
+
+    private void FixedUpdate()
+    {
+        
+        if (!socketReady)
+        {
+            setupSocket();
+            readSocket();
+        } 
+    }
     // Update is called once per frame
     void Update()
     {
-
- 
-
         string msg=readSocket();
         if (msg != "")
         {
@@ -60,7 +67,6 @@ public class ConnectedSmoker : MonoBehaviour
         }
         catch (Exception e) {
             Debug.Log("Socket error: " + e);
-            Destroy(GetComponent<ConnectedSmoker>());
         }
     }
     public String readSocket() { 
@@ -68,7 +74,7 @@ public class ConnectedSmoker : MonoBehaviour
             return "";
         try {
             return theReader.ReadLine();
-        } catch (Exception e) {
+        } catch (Exception) {
             return "";
         }
 
