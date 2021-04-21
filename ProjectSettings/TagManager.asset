@@ -7,6 +7,7 @@ TagManager:
   - Catchable
   - InteractiveWithSwitchButton
   - BeeArea
+  - VRController
   layers:
   - Default
   - TransparentFX
