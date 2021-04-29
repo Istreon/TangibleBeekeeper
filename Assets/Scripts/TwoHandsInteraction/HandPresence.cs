@@ -14,13 +14,11 @@ public class HandPresence : MonoBehaviour
     private GameObject spawnedHandModel;
     private Animator handAnimator;
 
-    public bool isGrabbing = false;
 
     // Start is called before the first frame update
     void Start()
     {
         TryInitialyze();
-        isGrabbing = false;
     }
 
     void TryInitialyze()
@@ -90,18 +88,6 @@ public class HandPresence : MonoBehaviour
             spawnedController.SetActive(false);
             spawnedHandModel.SetActive(true);
             UpdateHandAnimation();
-        }
-
-        if(targetDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue))
-        {
-            if(gripValue > 0.9f)
-            {
-                isGrabbing = true;
-            }
-        }
-        else
-        {
-            isGrabbing = false;
         }
     }
 }

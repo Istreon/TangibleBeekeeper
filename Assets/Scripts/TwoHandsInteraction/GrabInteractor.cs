@@ -5,16 +5,17 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class GrabInteractor : MonoBehaviour
 {
-    private XRDirectInteractor firstInteractor = null;
-    private XRDirectInteractor secondInteractor = null;
+    private HandInteractor firstInteractor = null;
+    private HandInteractor secondInteractor = null;
 
-    private bool firstGrab = false;
-    private bool secondGrab = false;
+    public bool firstGrab = false;
+    public bool secondGrab = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,29 +24,33 @@ public class GrabInteractor : MonoBehaviour
         
     }
 
-    public void SetInteractor(XRDirectInteractor interactor)
+    public void SetInteractor(HandInteractor interactor)
     {
         if(firstInteractor == null)
         {
             firstInteractor = interactor;
             firstGrab = true;
+            firstInteractor.SetAnchor(gameObject.transform);
         }
         else if(firstInteractor != null && secondInteractor == null)
         {
             secondInteractor = interactor;
             secondGrab = true;
+            secondInteractor.SetAnchor(gameObject.transform);
         }
     }
 
-    public void ClearInteractor(XRDirectInteractor interactor)
+    public void ClearInteractor(HandInteractor interactor)
     {
         if(interactor == firstInteractor)
         {
+            firstInteractor.ClearAnchor();
             firstInteractor = null;
             firstGrab = false;
         }
         else if(interactor == secondInteractor)
         {
+            secondInteractor.ClearAnchor();
             secondInteractor = null;
             secondGrab = false;
         }
@@ -104,4 +109,5 @@ public class GrabInteractor : MonoBehaviour
             secondInteractor.SendHapticImpulse(0.0f, 0.3f);
         }
     }
+
 }
