@@ -1,0 +1,33 @@
+{
+    "name": "Keyboard",
+    "maps": [
+        {
+            "name": "KeyboardMap",
+            "id": "1d3ae086-e4c6-4bca-85c9-ecce63690fef",
+            "actions": [
+                {
+                    "name": "Calibrate",
+                    "type": "Button",
+                    "id": "6f7c624b-a62f-4964-b6c7-67ed724128fb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "500a81ed-1d04-4dc9-8010-0ac33307d2ce",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Calibrate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

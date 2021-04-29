@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  - {fileID: -944628639613478452, guid: 257c41e9bfa0eeb4a9b43df74dac93e9, type: 3}
 --- !u!114 &43446935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +248,7 @@ MonoBehaviour:
   useRotationTracking: 1
   useIPDInPositionTracking: 1
   resetTrackerOnLoad: 0
-  AllowRecenter: 1
+  AllowRecenter: 0
   LateControllerUpdate: 1
 --- !u!1 &114792116
 GameObject:
@@ -1058,6 +1059,53 @@ MonoBehaviour:
   - {fileID: 453222506}
   - {fileID: 2129103078}
   - {fileID: 1848307151}
+--- !u!1 &433233308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 433233309}
+  - component: {fileID: 433233310}
+  m_Layer: 0
+  m_Name: AutoCalibration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &433233309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433233308}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.302, y: -0.01, z: 0.0301}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 837062667}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &433233310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433233308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f082e01f27234014bb6a7cdfe1cdfbdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oculusQuest2: 1
+  control: {fileID: -944628639613478452, guid: 257c41e9bfa0eeb4a9b43df74dac93e9, type: 3}
+  optitrackSpaceTransform: {fileID: 1000696391}
+  mainCamera: {fileID: 114792122}
 --- !u!1 &442247298 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7369921694761643621, guid: bf287f84b39dab3418eff02386a62f3d, type: 3}
@@ -1929,7 +1977,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000696390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.24, y: -0.09522283, z: 1.23}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 763642229}
