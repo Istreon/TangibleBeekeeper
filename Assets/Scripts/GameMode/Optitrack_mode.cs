@@ -5,10 +5,16 @@ using UnityEngine;
 public class Optitrack_mode : MonoBehaviour
 {
 
+    private void Start()
+    {
+        SettingsManager temp=FindObjectOfType<SettingsManager>();
+        if(temp!=null)
+        {
+            bool test = temp.IsOptitrackEnabled();
+            updateTrackedObjectState(test);
+        }
 
-    [Header("Tracked gameObjects which need disable rigidbody for tracking")]
-    [SerializeField]
-    private GameObject[] trackedObjects;
+    }
 
     void OnEnable()
     {
@@ -22,29 +28,28 @@ public class Optitrack_mode : MonoBehaviour
 
     private void updateTrackedObjectState(bool active)
     {
-        foreach (GameObject g in trackedObjects)
+        //Childs
+        Transform [] childList=GetComponentsInChildren<Transform>();
+        foreach (Transform t in childList)
         {
-            if(g!=null)
+            if(!this.gameObject.Equals(t.gameObject))
             {
-                //Enable or disable physics on tracked object depending on active OptiTrack
-                Rigidbody r = g.GetComponent<Rigidbody>();
-                if (r != null)
-                {
-                    r.isKinematic = active;
-                }
-                //Enable or disable tracking script on tracked object depending on active OptiTrack
-                OptitrackRigidBody o = g.GetComponent<OptitrackRigidBody>();
-                if (o != null)
-                {
-                    o.enabled = active;
-                }
+                t.gameObject.SetActive(active);
+            } 
+        }
 
-                ShockDetection s = g.GetComponent<ShockDetection>();
-                if (s != null)
-                {
-                    s.enabled = !active;
-                }
+        //OptitrackRigidBody
+        OptitrackRigidBody [] optitrackList=FindObjectsOfType<OptitrackRigidBody>();
+        foreach (OptitrackRigidBody o in optitrackList)
+        {
+            o.enabled = active;
+
+            Rigidbody r = o.GetComponent<Rigidbody>();
+            if (r != null)
+            {
+                r.isKinematic = active;
             }
         }
+        
     }
 }
