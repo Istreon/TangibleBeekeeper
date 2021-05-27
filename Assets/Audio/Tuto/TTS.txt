@@ -1,0 +1,21 @@
+3 pistes stéréo : (toute avec une égalisation "Téléphone")
+   → piste originale avec hauteur augmentée de 10
+   → piste avec écho (0,04 & 0,6) avec hauteur augmentée de 15
+   → piste avec écho (0,04 & 0,6) avec hauteur diminuée de -5 (volume sonore -4 dB)
+
+#0
+Bonjour ! Bienvenue dans cette simulation de ruche en réalité virtuelle.
+Avant de commencer, testons ensembles quelques fonctionnalités dont vous aurez besoin.
+
+#1
+Tout d'abord, étudions vos contrôleurs. Appuyez sur les différents boutons pour vous familiariser.
+
+#2
+Parfait ! À présent, appuyez sur les gachettes pour déclencher un rayon laser et utilisez-le pour cliquer sur ces boutons en les relâchant.
+
+#3
+Super, vous maîtrisez parfaitement les contrôleurs !
+Transformons-les en "mains" pour interagir avec d'autres objets. Utilisez-les avec le bouton de "grip" pour saisir les abeilles et les cadres sur la table.
+
+#4
+Vous me semblez prêt à commencer la simulation. Enfilez donc la visière pour allez voir la ruche.
