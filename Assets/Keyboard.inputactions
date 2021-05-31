@@ -12,6 +12,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Next",
+                    "type": "Button",
+                    "id": "7fa49f01-1be4-40c1-ad9b-d88a2e635064",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -23,6 +31,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Calibrate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "627e7b61-8971-4f82-80a2-7c03a1e3d3a5",
+                    "path": "<Keyboard>/#(N)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Next",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
