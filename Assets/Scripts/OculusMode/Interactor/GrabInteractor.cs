@@ -8,7 +8,9 @@ public class GrabInteractor : MonoBehaviour
     private HandInteractor firstInteractor = null;
     private HandInteractor secondInteractor = null;
 
+    [HideInInspector]
     public bool firstGrab = false;
+    [HideInInspector]
     public bool secondGrab = false;
 
 
@@ -56,6 +58,11 @@ public class GrabInteractor : MonoBehaviour
         }
     }
 
+    public bool IsGrabbed()
+    {
+        return firstGrab | secondGrab;
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         PlayHaptic(other);
@@ -79,22 +86,22 @@ public class GrabInteractor : MonoBehaviour
             float toSecondDist = Vector3.Distance(collision.transform.position, secondInteractor.transform.position);
             if(toFirstDist < toSecondDist)
             {
-                firstInteractor.SendHapticImpulse(0.3f, 0.3f);
-                secondInteractor.SendHapticImpulse(0.1f, 0.3f);
+                firstInteractor.SendHapticImpulse(0.1f, 0.1f);
+                secondInteractor.SendHapticImpulse(0.01f, 0.1f);
             }
             else
             {
-                secondInteractor.SendHapticImpulse(0.3f, 0.3f);
-                firstInteractor.SendHapticImpulse(0.1f, 0.3f);
+                secondInteractor.SendHapticImpulse(0.1f, 0.1f);
+                firstInteractor.SendHapticImpulse(0.01f, 0.1f);
             }
         }
         else if(firstGrab && !secondGrab)
         {
-            firstInteractor.SendHapticImpulse(0.3f, 0.3f);
+            firstInteractor.SendHapticImpulse(0.1f, 0.1f);
         }
         else if (secondGrab && !firstGrab)
         {
-            secondInteractor.SendHapticImpulse(0.3f, 0.3f);
+            secondInteractor.SendHapticImpulse(0.1f, 0.1f);
         }
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR;
 
 public class GraphController : MonoBehaviour
 {
@@ -12,9 +13,9 @@ public class GraphController : MonoBehaviour
     [Range(0.0f,1.0f)]
     public float activationThreshold = 0.1f;
     public GraphPlayer graphPlayer;
-    public GraphHider graphHider;
+    public InputDeviceCharacteristics hiderChara;
+    private InputDevice graphHider;
     
-    [HideInInspector]
     public bool isGraphShown = false;
     public GameObject graph;
     public List<MainController> controllers;
@@ -23,9 +24,12 @@ public class GraphController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateGraphVisibility(false, Vector3.zero);
-        graph.SetActive(false);
+        UpdateGraphVisibility(isGraphShown, graph.transform.position);
+        graph.SetActive(isGraphShown);
 
+        List<InputDevice> devices = new List<InputDevice>();
+        InputDevices.GetDevicesWithCharacteristics(hiderChara, devices);
+        graphHider = devices[0];
     }
 
     // Update is called once per frame
@@ -36,7 +40,10 @@ public class GraphController : MonoBehaviour
             rayController.gameObject.SetActive(CheckIfActivated(rayController));
         }
 
-        graphHider.gameObject.SetActive(isGraphShown);
+        if(graphHider.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > activationThreshold)
+        {
+            UpdateGraphVisibility(false, Vector3.zero);
+        }
 
     }
 

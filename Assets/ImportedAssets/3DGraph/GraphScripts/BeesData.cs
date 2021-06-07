@@ -17,6 +17,8 @@ public class BeesData : MonoBehaviour
 
     public TMPro.TextMeshProUGUI nourrices;
     public TMPro.TextMeshProUGUI butineuses;
+    public List<Sprite> images;
+    public Image graphImage;
     
 
     //Lists to store data and instantiate the graph
@@ -42,13 +44,44 @@ public class BeesData : MonoBehaviour
     private List<float> eos = new List<float>();
     private List<float> realAges = new List<float>();
     private List<float> exchanges = new List<float>();
+    private int scenarioIndex = 0;
+    private string path = "Assets/Logs/logsScenario0.csv";
 
     //Instance to link & update the data to the graph
     public ContactGrapherRetriever grapherRetriever;
 
     private void Start()
     {
-        RetrieveData("Assets/ImportedAssets/3DGraph/Logs/F_Classic_Random80_500_500_864000_1.0_LEoEmC15.csv");
+        InitializeGraph();
+
+        //Initialization of the input devices for interaction
+        GetDevice();
+
+        //timeSlider.onValueChanged.AddListener(delegate {UpdateGrapherRetriever(timeSlider.value);});
+        //timeSlider.onValueChanged.AddListener(delegate {CheckValueChanged(timeSlider.value);});
+        //CheckValueChanged(timeSlider.value);
+
+        //CheckBeeLists();
+    }
+
+    public void InitializeGraph()
+    {
+        beeData = new List<List<Bee>>();
+        beeMax = new List<Vector3>();
+        bees = new List<Bee>();
+        beePopulation = new List<int[]>();
+        currentTurn = 0;
+        turnIndex = 0;
+        nbOfTurns = 0;
+        turns = new List<int>();
+        ids = new List<int>();
+        tasks = new List<string>();
+        hjs = new List<float>();
+        eos = new List<float>();
+        realAges = new List<float>();
+        exchanges = new List<float>();
+        
+        RetrieveData(path);
         
         Debug.Log("Total of turns: " + turns.Count);
 
@@ -68,24 +101,17 @@ public class BeesData : MonoBehaviour
                 beeData.Add(bees);
                 bees = new List<Bee>();
             }
+            
         }
         bees = beeData[0];
         bees[0].ToString();
         nbOfTurns = beeData.Count;
-        Debug.Log("There are " + bees.Count + " bees for " + nbOfTurns + " turns stored in a " + beeData.Count + " long list.");
-        Debug.Log("First turn: " + beeData[0].Count + " bees. Second turn: " + beeData[1].Count + " bees. Last turn: " + beeData[beeData.Count - 1].Count + " bees.");
+        //Debug.Log("There are " + bees.Count + " bees for " + nbOfTurns + " turns stored in a " + beeData.Count + " long list.");
+        //Debug.Log("First turn: " + beeData[0].Count + " bees. Second turn: " + beeData[1].Count + " bees. Last turn: " + beeData[beeData.Count - 1].Count + " bees.");
 
 
-        //Initialization of the input devices for interaction
-        GetDevice();
         InitializeSlider(timeSlider);
-
-        //timeSlider.onValueChanged.AddListener(delegate {UpdateGrapherRetriever(timeSlider.value);});
-        //timeSlider.onValueChanged.AddListener(delegate {CheckValueChanged(timeSlider.value);});
-        //CheckValueChanged(timeSlider.value);
-
-        CheckBeeLists();
-
+        
     }
 
     private void Update()
@@ -172,6 +198,15 @@ public class BeesData : MonoBehaviour
         {
             device = devices[0];
         }
+    }
+
+    public void NextScenario()
+    {
+        scenarioIndex = (scenarioIndex + 1) % 3;
+        path = "Assets/Logs/logsScenario" + scenarioIndex + ".csv";
+        graphImage.sprite = images[scenarioIndex];
+        graphImage.preserveAspect = true;
+        InitializeGraph();
     }
 
 

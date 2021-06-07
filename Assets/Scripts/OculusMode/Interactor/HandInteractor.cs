@@ -9,14 +9,14 @@ public class HandInteractor : XRDirectInteractor
 
     public void SetAnchor(Transform anchor)
     {
-        Debug.Log("HandInteractor.SetAnchor");
+        //Debug.Log("HandInteractor.SetAnchor");
         //ghostHand.SetActive(true);
         ghostHand.GetComponent<GhostHandPresence>().SetAnchor(anchor);
     }
 
     public void ClearAnchor()
     {
-        Debug.Log("HandInteractor.ClearAnchor");
+        //Debug.Log("HandInteractor.ClearAnchor");
         ghostHand.GetComponent<GhostHandPresence>().ClearAnchor(gameObject.GetComponent<XRController>().modelPrefab);
         //ghostHand.SetActive(false);
     }

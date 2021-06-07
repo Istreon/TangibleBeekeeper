@@ -82,13 +82,25 @@ public class HandPresence : MonoBehaviour
             {
                 controllerAnimator.SetFloat("Button 1", 1.0f);
             }
+            else
+            {
+                controllerAnimator.SetFloat("Button 1", 0.0f);
+            }
             if(targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool buttonTwo) && buttonTwo)
             {
                 controllerAnimator.SetFloat("Button 2", 1.0f);
             }
+            else
+            {
+                controllerAnimator.SetFloat("Button 2", 0.0f);
+            }
             if(targetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool buttonThree) && buttonThree)
             {
                 controllerAnimator.SetFloat("Button 3", 1.0f);
+            }
+            else
+            {
+                controllerAnimator.SetFloat("Button 3", 0.0f);
             }
 
             if(targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue))

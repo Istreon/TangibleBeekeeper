@@ -1,0 +1,8 @@
+Vous voilà dans la scène principale. Vous pouvez interagir avec la plupart des OBJETS qui s'y trouvent.
+Pour attraper un OBJET utilisez les boutons de "GRIP". Certains OBJETS peuvent effectuer une ACTION avec la GACHETTE une fois saisis.
+Commençons par les ruches. Une fois le TOIT enlevé, vous pouvez saisir les CADRES et les déplacer d'une ruche à l'autre.
+Inutile d'essayer d'être trop précis, les CADRES se placeront eux-même dans la ruche.
+Une fois une DIVISION effectuée, un GRAPHIQUE sera disponible. Placez-le dans la scène avec la GACHETTE GAUCHE.
+Pour le faire disparaître, utilisez la GACHETTE DROITE.
+Enfin, pour manipuler le GRAPHIQUE, utilisez les JOYSTICK DROIT (rotation dans l'espace) et GAUCHE (avancer/reculer dans le temps).
+Maintenant que vous savez tout, amusez-vous dans la scène avant d'entamer l'expérience.

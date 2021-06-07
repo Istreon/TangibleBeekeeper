@@ -42,9 +42,9 @@ public class RingMenu : MonoBehaviour
             pieces[i].cakePiece.color = new Color(0.0f, 0.0f, 0.0f, 0.5f);
 
             //Set icon
-            Vector3 iconPos = pieces[i].icon.transform.localPosition;
+            //Vector3 iconPos = pieces[i].icon.transform.localPosition;
             pieces[i].icon.transform.localPosition = pieces[i].cakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength, Vector3.forward) * Vector3.up * iconDist;
-            pieces[i].icon.transform.localPosition = new Vector3(iconPos.x, iconPos.y, iconPos.z + 10);
+            //pieces[i].icon.transform.localPosition = new Vector3(iconPos.x, iconPos.y, iconPos.z + 10);
             pieces[i].icon.sprite = ring.ringElements[i].elementIcon;
         }
     }

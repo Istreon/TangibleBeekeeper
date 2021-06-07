@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HivesScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/DivisionScene.unity
+    guid: 7a15a13d68408b04bba0988f404a54e6
+  - enabled: 1
+    path: Assets/Scenes/GraphScene.unity
+    guid: 09673d7b60db20944b4e8907eb537ba0
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: f280e0594ed4efe4e9f2d289b9e5845f,
       type: 2}

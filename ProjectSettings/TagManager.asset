@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Catchable
   - InteractiveWithSwitchButton
+  - Frame
   layers:
   - Default
   - TransparentFX
