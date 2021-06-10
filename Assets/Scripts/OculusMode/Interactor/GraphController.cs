@@ -12,7 +12,6 @@ public class GraphController : MonoBehaviour
     public InputHelpers.Button rayActivationButton;
     [Range(0.0f,1.0f)]
     public float activationThreshold = 0.1f;
-    public GraphPlayer graphPlayer;
     public InputDeviceCharacteristics hiderChara;
     private InputDevice graphHider;
     

@@ -11,7 +11,7 @@ public class MainController : XRController
 
    public void ShowController(bool show)
    {
-     handPresenceManager.showController = show;
+     //handPresenceManager.showController = show;
      foreach (GameObject child in handChildren)
      {
          child.SetActive(!show);

@@ -6,6 +6,12 @@ using UnityEngine;
 public class HandleManager : MonoBehaviour
 {
     private Rigidbody handleBody = null;
+    private Renderer objectRend;
+    public bool showHandle = false;
+    public Material unselected;
+    public Material selected;
+
+    
     
     // Start is called before the first frame update
     void Start()
@@ -13,6 +19,13 @@ public class HandleManager : MonoBehaviour
         this.transform.parent = null;
         handleBody = this.GetComponent<Rigidbody>();
         handleBody.isKinematic = false;
+
+        if(showHandle)
+        {
+            objectRend = gameObject.GetComponent<Renderer>();
+            objectRend.material = unselected;
+        }
+        
     }
 
     // Update is called once per frame
@@ -42,6 +55,29 @@ public class HandleManager : MonoBehaviour
     private void disableConstraints()
     {
         handleBody.constraints = RigidbodyConstraints.None;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(showHandle)
+        {
+            if(other.gameObject.TryGetComponent<HandInteractor>(out HandInteractor interactor))
+            {
+                objectRend.material = selected;
+            }
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(showHandle)
+        {
+            if(other.gameObject.TryGetComponent<HandInteractor>(out HandInteractor interactor))
+            {
+                objectRend.material = unselected;
+            }
+        }
     }
 
 }

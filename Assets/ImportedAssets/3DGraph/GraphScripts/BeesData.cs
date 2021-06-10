@@ -27,6 +27,8 @@ public class BeesData : MonoBehaviour
     public List<Vector3> beeMax = new List<Vector3>();
     public List<Bee> bees = new List<Bee>();
     public List<int[]> beePopulation = new List<int[]>();
+    private List<string> otherTasks = new List<string>() {"EggTask", "LarvaTask", "NympheaTask", "Rest"};
+    private List<int> timeScale = new List<int>();
 
     //Time parameters
     [HideInInspector]
@@ -87,11 +89,15 @@ public class BeesData : MonoBehaviour
 
         //Data storage in the different lists
         currentTurn = turns[0];
+        timeScale.Add(currentTurn);
         for( int i = 0; i < turns.Count; i++)
         {            
             if(turns[i] == currentTurn)
             {
-                bees.Add(new Bee(ids[i], tasks[i], hjs[i], realAges[i], exchanges[i]));
+                if(!otherTasks.Contains(tasks[i]))
+                {
+                    bees.Add(new Bee(ids[i], tasks[i], hjs[i], realAges[i], exchanges[i]));
+                }
             }
             else
             {
@@ -100,6 +106,7 @@ public class BeesData : MonoBehaviour
                 beePopulation.Add(GetPopulation(bees));
                 beeData.Add(bees);
                 bees = new List<Bee>();
+                timeScale.Add(currentTurn);
             }
             
         }
@@ -128,7 +135,7 @@ public class BeesData : MonoBehaviour
              }
             timeSlider.value = turnIndex;
             grapherRetriever.maxValues = beeMax[turnIndex];
-            instant.text = "Instant " + (turnIndex + 1);
+            instant.text = "T0 + " + GetTurnDay(timeScale[turnIndex]);
             nourrices.text = "Nourrices : " + beePopulation[turnIndex][0];
             butineuses.text = "Butineuses : " + beePopulation[turnIndex][1];  
         }
@@ -175,11 +182,17 @@ public class BeesData : MonoBehaviour
             if(b.physioAge < 0.5f)
                 nour += 1;
             else
-                but +=1;
+                but +=1;            
         }
         pop[0] = nour;
         pop[1] = but;
         return pop;
+    }
+
+    public int GetTurnDay(int turn)
+    {
+        int day = turn / 86400;
+        return day;
     }
 
     public void InitializeSlider(Slider slider)
@@ -202,7 +215,7 @@ public class BeesData : MonoBehaviour
 
     public void NextScenario()
     {
-        scenarioIndex = (scenarioIndex + 1) % 3;
+        scenarioIndex = (scenarioIndex + 1) % 2;
         path = "Assets/Logs/logsScenario" + scenarioIndex + ".csv";
         graphImage.sprite = images[scenarioIndex];
         graphImage.preserveAspect = true;

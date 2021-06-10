@@ -56,36 +56,28 @@ public class DivisionProgression : MonoBehaviour
     {
         if(canContinue && !sceneAudio.isPlaying)
         {
-            if(sceneIndex == 0)
+            if(sceneIndex < displayText.Count)
             {
+                Debug.Log("Step 1: instruction pt. " + (sceneIndex + 1));
                 canContinue = false;
-                Debug.Log("Step 1: intructions pt. 1");
                 textBox.SetActive(true);
                 subText.SetText(displayText[sceneIndex]);
                 sceneAudio.PlayOneShot(playAudio[sceneIndex]);
-                CanContinue();
+                CheckIfAPressed();
             }
-            else if(sceneIndex == 1)
+            else if(sceneIndex == displayText.Count)
             {
+                Debug.Log("Step 2: division");
                 canContinue = false;
-                Debug.Log("Step 2: intructions pt. 2");
-                subText.SetText(displayText[sceneIndex]);
-                sceneAudio.PlayOneShot(playAudio[sceneIndex]);
-                CanContinue();
-            }
-            else if(sceneIndex == 2)
-            {
-                canContinue = false;
-                Debug.Log("Step 3: division");
                 textBox.SetActive(false);
                 //areHivesDivided = CheckHivesStates();
                 CheckIfAPressed();
             }
 
-            else if(sceneIndex == 3)
+            else if(sceneIndex == displayText.Count + 1)
             {
+                Debug.Log("Step 3: wait for next mission");
                 canContinue = false;
-                Debug.Log("Step 4: wait for next mission");
                 foreach (AudioSource audio in ambientSound)
                 {
                     audio.Stop();
@@ -95,7 +87,7 @@ public class DivisionProgression : MonoBehaviour
                 CheckIfAPressed();
             }
 
-            else if(sceneIndex == 4)
+            else if(sceneIndex == displayText.Count + 2)
             {
                 canContinue = false;
                 blackBox.EnableBlackBoxMode();
@@ -105,7 +97,7 @@ public class DivisionProgression : MonoBehaviour
             }
         }
 
-        if(sceneIndex >= 2 && !sceneAudio.isPlaying)
+        if(!sceneAudio.isPlaying)
         {
             CheckIfAPressed();
         }
@@ -140,21 +132,17 @@ public class DivisionProgression : MonoBehaviour
     private void CheckIfAPressed()
     {
         Debug.Log("Entered CheckIfAPressed()");
-        if(sceneIndex >= 2)
+        if(targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPressed) && isPressed)
         {
-            if(targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPressed) && isPressed)
-            {
-                Debug.Log("Button \'A\' is being pressed");
-                btnALastState = true;
-            }
-            else if (btnALastState)
-            {
-                Debug.Log("Button \'A\' was pressed");
-                btnALastState = false;
-                //wasPressed = true;
-                CanContinue();
-            }
+            Debug.Log("Button \'A\' is being pressed");
+            btnALastState = true;
         }
-            
+        else if (btnALastState)
+        {
+            Debug.Log("Button \'A\' was pressed");
+            btnALastState = false;
+            //wasPressed = true;
+            CanContinue();
+        }    
     }
 }
