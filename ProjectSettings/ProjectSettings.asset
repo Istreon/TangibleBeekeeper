@@ -8,7 +8,7 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -129,9 +129,12 @@ PlayerSettings:
     Others: 1
   bundleVersion: 0.1
   preloadedAssets:
-  - {fileID: 11400000, guid: 10cc54e184b3b3a4a8a9be9a5d747a42, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: -7077025137115296073, guid: 67df5722c237e464c82bcc124f732974, type: 2}
+  - {fileID: -306625791591557302, guid: d70853bf686061547a0fcbc48648dc0d, type: 2}
+  - {fileID: 11400000, guid: 10cc54e184b3b3a4a8a9be9a5d747a42, type: 2}
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -485,6 +488,8 @@ PlayerSettings:
   switchNetworkInterfaceManagerInitializeEnabled: 1
   switchPlayerConnectionEnabled: 1
   switchUseNewStyleFilepaths: 0
+  switchUseMicroSleepForYield: 1
+  switchMicroSleepForYieldTime: 25
   ps4NPAgeRating: 12
   ps4NPTitleSecret: 
   ps4NPTrophyPackPath: 
