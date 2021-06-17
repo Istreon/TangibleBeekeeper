@@ -31,12 +31,30 @@ public class WoodFrameManager : MonoBehaviour
         if(grabInteractor.firstGrab | grabInteractor.secondGrab)
         {
             isFrameGrabbed = true;
+            gameObject.layer = 11; //FrameLayer, so that the frame does not interact with the others
+            foreach (Transform child in transform)
+            {
+                child.gameObject.layer = 11;
+            }
+            foreach (GameObject gp in grabPoints)
+            {
+                gp.layer = 10; //SecondGrabLayer, so that the grab points d not interact with the other objects
+            }
         }
         else if(!grabInteractor.firstGrab && !grabInteractor.secondGrab)
         {
             //This order ensure that the frame is setteled only once
             PutInHive();
             isFrameGrabbed = false;
+            gameObject.layer = 9; //InteractableLayer, bas layer for interactable objects
+            foreach (Transform child in transform)
+            {
+                child.gameObject.layer = 9;
+            }
+            foreach (GameObject gp in grabPoints)
+            {
+                gp.layer = 10; //SecondGrabLayer, so that the grab points d not interact with the other objects
+            }
         }
     }
 

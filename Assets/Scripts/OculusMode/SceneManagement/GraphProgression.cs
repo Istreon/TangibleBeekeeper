@@ -22,7 +22,9 @@ public class GraphProgression : MonoBehaviour
     private AudioSource sceneAudio;
     public AudioSource ambientSound;
     public BlackBoxMode blackBox;
-    private int remainingGraph = 2;
+    private int nbOfGraphs = 2;
+    private bool isWaiting = false;
+    public LoadingScreen loadingScreen;
     
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,7 @@ public class GraphProgression : MonoBehaviour
         waitingScreen.SetActive(false);
         endScreen.SetActive(false);
         blackBox.DisableBlackBoxMode();
+        loadingScreen.gameObject.SetActive(false);
 
         sceneAudio = gameObject.GetComponent<AudioSource>();
 
@@ -42,10 +45,14 @@ public class GraphProgression : MonoBehaviour
         wasAPressed = false;
         nbOfAPressed = 0;
         canContinue = true;
+        isWaiting = false;
 
         displayText = new List<string>();
         subText = textBox.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        string[] lines = System.IO.File.ReadAllLines("Assets/Audio/GraphScene/TTS.txt");
+        TextAsset f = (TextAsset)Resources.Load("custom_dir/" + "GraphScene_TTS");
+        string fileText = System.Text.Encoding.UTF8.GetString(f.bytes);
+        //string[] lines = System.IO.File.ReadAllLines(fileText);
+        string[] lines = fileText.Split('\n');
         foreach(string l in lines)
         {
             displayText.Add(l);
@@ -76,36 +83,40 @@ public class GraphProgression : MonoBehaviour
             }
         }
 
-        if(remainingGraph <= 0)
+        if(nbOfGraphs <= 0)
         {
             Debug.Log("Step 3: end of the simulation");
             endScreen.SetActive(true);
             blackBox.EnableBlackBoxMode();
             ambientSound.Stop();
-            //LOAD LOBBY SCENE TO START OVER
         }
 
         if(wasAPressed)
         {
-            if(nbOfAPressed == 1)
+            if(isWaiting && nbOfGraphs == 2)
             {
                 Debug.Log("Waiting screen activated");
                 waitingScreen.SetActive(true);
                 blackBox.EnableBlackBoxMode();
                 ambientSound.Pause();
-                sceneIndex += 1;
+                //sceneIndex += 1;
                 dataModel.NextScenario();
                 wasAPressed  = false;
             }
-            else if(nbOfAPressed == 2)
+            else if(!isWaiting && nbOfGraphs == 2)
             {
                 Debug.Log("Next graph observation");
                 waitingScreen.SetActive(false);
                 blackBox.DisableBlackBoxMode();
                 ambientSound.UnPause();
                 wasAPressed = false;
-                nbOfAPressed = 0;
-                remainingGraph -= 1;
+                //nbOfAPressed = 0;
+                nbOfGraphs -= 1;
+            }
+            else if(nbOfGraphs <= 1)
+            {
+                loadingScreen.gameObject.SetActive(true);
+                loadingScreen.StartLoading("LobbyScene");
             }
         }
 
@@ -120,16 +131,16 @@ public class GraphProgression : MonoBehaviour
 
     private void CheckIfNext()
     {
-        Debug.Log("Entered CheckIfNext()");
+        //Debug.Log("Entered CheckIfNext()");
         if(targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPressed) && isPressed)
         {
             btnALastState = true;
-            Debug.Log("\'A\' pressed");
+            //Debug.Log("\'A\' pressed");
         }
         else if (btnALastState)
         {
             btnALastState = false;
-            Debug.Log("\'A\' released");
+            //Debug.Log("\'A\' released");
             if(sceneIndex < displayText.Count)
             {
                 CanContinue();
@@ -137,7 +148,7 @@ public class GraphProgression : MonoBehaviour
             else
             {
                 wasAPressed = true;
-                nbOfAPressed += 1;
+                isWaiting = !isWaiting;
             }
         } 
     }

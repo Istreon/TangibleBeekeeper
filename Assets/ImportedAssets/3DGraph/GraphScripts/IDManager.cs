@@ -10,6 +10,7 @@ public class IDManager
 
     public void freeIndex(int index)
     {
+        //Debug.Log("Entered IDManager.freeIndex()");
         freedIds.Add(index);
     }
 

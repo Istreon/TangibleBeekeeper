@@ -104,7 +104,7 @@ public class HiveManager : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         WoodFrameManager frameManager;
-        RoofManager roofManager;
+        //RoofManager roofManager;
         if(other.gameObject.TryGetComponent<WoodFrameManager>(out frameManager))
         {
             if(!hiveSpotDict.ContainsValue(other.gameObject) && hiveSpotDict.ContainsValue(null))
@@ -127,16 +127,16 @@ public class HiveManager : MonoBehaviour
                 Destroy(empty);
             }
         }
-        else if(other.gameObject.TryGetComponent<RoofManager>(out roofManager))
+        /*else if(other.gameObject.TryGetComponent<RoofManager>(out roofManager))
         {
             roofManager.SetOnHive(roofReferencePoint, this);
-        }
+        }*/
     }
 
     private void OnTriggerExit(Collider other)
     {
         WoodFrameManager frameManager;
-        RoofManager roofManager;
+        //RoofManager roofManager;
         if(other.gameObject.TryGetComponent<WoodFrameManager>(out frameManager))
         {
             foreach (Vector3 key in hiveSpotDict.Keys)
@@ -148,10 +148,10 @@ public class HiveManager : MonoBehaviour
                 }
             }
         }
-        else if(other.gameObject.TryGetComponent<RoofManager>(out roofManager))
+        /*else if(other.gameObject.TryGetComponent<RoofManager>(out roofManager))
         {
             //RemoveRoof();
-        }
+        }*/
     }
 
     public void SettleFrame(GameObject frame, Vector3 spot)

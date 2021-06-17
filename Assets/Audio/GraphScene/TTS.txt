@@ -1,5 +1,0 @@
-Vous allez à présent étudier le GRAPHIQUE 3D lié à une DIVISION.
-Pour le faire apparaître et le déplacer dans la scène, utilisez la GACHETTE GAUCHE.
-Pour le faire disparaître, utilisez la GACHETTE DROITE.
-Pour manipuler le GRAPHIQUE 3D, utilisez les JOYSTICK DROIT (rotation dans l'espace) et GAUCHE (avancer/reculer dans le temps).
-Pour passer aux GRAPHIQUES suivants, APPUYEZ sur A.

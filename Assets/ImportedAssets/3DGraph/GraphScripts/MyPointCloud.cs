@@ -91,6 +91,7 @@ public class MyPointCloud : MonoBehaviour
 
     public void disablePointID(int pointID)
     {
+        //Debug.Log("Entered MyPointCloud.disablePointID()");
         //points[pointID] = null;
         points.Remove(pointID);
     }

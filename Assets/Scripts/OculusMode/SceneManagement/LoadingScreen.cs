@@ -14,7 +14,8 @@ public class LoadingScreen : MonoBehaviour
     private void Awake()
     {
         //DontDestroyOnLoad(gameObject);
-        mainScreen.worldCamera = Camera.main;
+        //mainScreen.renderMode = RenderMode.ScreenSpaceCamera;
+        //mainScreen.worldCamera = Camera.main;
     }
     public void StartLoading(string scene)
     {

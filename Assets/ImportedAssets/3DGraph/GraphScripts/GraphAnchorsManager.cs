@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class GraphAnchorsManager : MonoBehaviour
 {
@@ -32,6 +33,11 @@ public class GraphAnchorsManager : MonoBehaviour
 
     private Vector3 posAtStart;
 
+    private MainController controller;
+    private Transform attachPoint;
+    private float attachTime;
+    private bool isHandRotating = false;
+
     void Start()
     {
         originTransform = gameObject.transform;
@@ -39,15 +45,47 @@ public class GraphAnchorsManager : MonoBehaviour
 
         GetDevice();
 
+        isHandRotating = false;
+        controller = null;
+
     }
 
     void Update()
     {
         ringMenu.activeElement = -1;
+        //CheckIfGrabbed();
         
-        keyPadPressed = GetJoystickPosition();
-        
-        RotateGraph();
+        if(!isHandRotating)
+        {
+             keyPadPressed = GetJoystickPosition();
+            RotateGraph();
+        }
+        /*else
+        {  
+            if(Time.realtimeSinceStartup - attachTime > 0.5f)
+            {
+                float xDist = controller.transform.position.x - attachPoint.position.x;
+                float yDist = controller.transform.position.y - attachPoint.position.y;
+                float zRot = controller.transform.eulerAngles.z - attachPoint.eulerAngles.z;
+                attachPoint = controller.transform;
+                if(xDist > yDist && xDist > zRot)
+                {
+                    Debug.Log("Rotating around the Y AXIS");
+                    gameObject.transform.RotateAround(gameObject.transform.position, Vector3.up, xDist);
+                }
+                else if(yDist > xDist && yDist > zRot)
+                {
+                    Debug.Log("Rotating around the X AXIS");
+                    gameObject.transform.RotateAround(gameObject.transform.position, Vector3.right, yDist);
+                }
+                else if(zRot > xDist && zRot > yDist)
+                {
+                    Debug.Log("Rotating around the Z AXIS");
+                    gameObject.transform.RotateAround(gameObject.transform.position, Vector3.forward, zRot);
+                }
+            }
+        }*/
+    
 
         /*if (Input.GetKeyDown(KeyCode.Keypad0))
         {
@@ -70,6 +108,17 @@ public class GraphAnchorsManager : MonoBehaviour
         }*/
 
     }
+
+    /*private void OnTriggerEnter(Collider other)
+    {
+        MainController mainController;
+        if(controller == null && other.gameObject.TryGetComponent<MainController>(out mainController))
+        {
+            controller = mainController;
+            Debug.Log("GraphAnchorsManager.OnTriggerEnter(" + controller.name +")");
+        }
+    }*/
+    
 
     public void GetDevice()
     {
@@ -160,6 +209,43 @@ public class GraphAnchorsManager : MonoBehaviour
             {
                 moving = false;
             }
+        }
+    }
+
+    public void CheckIfGrabbed()
+    {
+        Debug.Log("Entered CheckIfGrabbed()");
+        if(controller != null)
+        {
+            if(controller.inputDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue) && gripValue > 0.1f)
+            {
+                SetAttach();
+            }
+            else
+            {
+                ClearAttach();
+            }
+        }
+    }
+
+    public void SetAttach()
+    {
+        if(!isHandRotating)
+        {
+            Debug.Log("GraphAnchorManager.interactor SET");
+            attachPoint = controller.transform;
+            attachTime = Time.realtimeSinceStartup;
+            isHandRotating = true;
+        }
+    }
+
+    public void ClearAttach()
+    {
+        if(isHandRotating)
+        {
+            Debug.Log("GraphAnchorManager.interactor CLEARED");
+            isHandRotating = false;
+            controller = null;
         }
     }
 }

@@ -31,6 +31,7 @@ public class PointCloudReferencer : MonoBehaviour
 
     public void freeIndex(int pointID)
     {
+        //Debug.Log("Entered PointCloudReferencer.freeIndex()");
         idManager.freeIndex(pointID);
         getCloudFor(pointID).disablePointID(pointID);
     }

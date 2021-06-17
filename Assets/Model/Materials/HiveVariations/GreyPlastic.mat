@@ -8,14 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GreyPlastic
-  m_Shader: {fileID: -6465566751694194690, guid: 69df23efd14572a4ab02e9569d5a317d,
-    type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_ShaderKeywords: _SPECULAR_SETUP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -90,17 +90,17 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0
+    - _Smoothness: 0.907
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
     - _UVSec: 0
-    - _WorkflowMode: 1
+    - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
     - Test: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
-    - _BaseColor: {r: 0.51886785, g: 0.3625042, b: 0.20803663, a: 1}
+    - _BaseColor: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 1}
     - _Color: {r: 0.5188679, g: 0.36250427, b: 0.20803666, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _PlaneNormal: {r: 0.99970794, g: 0.010611179, b: -0.021715917, a: 0}

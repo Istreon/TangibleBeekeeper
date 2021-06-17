@@ -12,14 +12,43 @@ public class ContactGrapherRetriever : MonoBehaviour
 
     public PointCloudReferencer pointCloud;
 
+    public bool xRelative = true;
+    public bool yRelative = true;
+    public bool zRelative = true;
+
+    public bool zLogarithmicScale = true;
+
     public float refreshRate = 1;
 
     private float lastRefresh = -10;
 
     private Dictionary<int, int> idToPointID = new Dictionary<int, int>();
 
+    private void Start()
+    {
+        /*if(zLogarithmicScale)
+        {
+            maxValues.z = Mathf.Log10(maxValues.z + 1);
+        }*/
+    }
+
+    /**** EXPERIMENTAL ****/
+    public void clearGraph()
+    {
+        foreach(KeyValuePair<int, int> entry in idToPointID)
+        {
+            pointCloud.freeIndex(entry.Value);
+        }
+        idToPointID.Clear();
+    }
+    /*********************/
     void Update()
     {
+        if(zLogarithmicScale)
+        {
+            maxValues.z = Mathf.Log10(maxValues.z + 1);
+        }
+
         if(Time.realtimeSinceStartup - lastRefresh > refreshRate)
         {
             List<Vector3> targets = new List<Vector3>();
@@ -52,7 +81,43 @@ public class ContactGrapherRetriever : MonoBehaviour
 
                 ids.Add(pointID);
             }
-
+            if(model.forward)
+            {
+                for(int i = 0; i < model.turnIndex - 1; i++)
+                {
+                    foreach (Bee deadBee in model.deadBees[i])
+                    {
+                        Debug.Log("Checking dead bees in the graph");
+                        if(idToPointID.ContainsKey(deadBee.id))
+                        {
+                            Debug.Log("One dead bee spotted");
+                            int beePointID = idToPointID[deadBee.id];
+                            pointCloud.freeIndex(beePointID);
+                            idToPointID.Remove(deadBee.id);
+                        }
+                    }
+                }
+                
+            }
+            else
+            {
+                for(int i = model.bornBees.Count - 1; i >= model.turnIndex; i--)
+                {
+                    foreach (Bee bornBee in model.bornBees[i])
+                    {
+                        Debug.Log("Checking new bees in the graph");
+                        if(idToPointID.ContainsKey(bornBee.id))
+                        {
+                            Debug.Log("One new bee spotted");
+                            int beePointID = idToPointID[bornBee.id];
+                            pointCloud.freeIndex(beePointID);
+                            idToPointID.Remove(bornBee.id);
+                        }
+                    }
+                }
+                
+            }
+            
             pointCloud.updatePoints(new UpdateOrder(targets, ids, colors));
 
             lastRefresh = Time.realtimeSinceStartup;
@@ -62,14 +127,27 @@ public class ContactGrapherRetriever : MonoBehaviour
 
     public Vector3 transformPoint(Vector3 point)
     {
-        maxValues.x = Mathf.Max(maxValues.x, point.x);
-        maxValues.y = Mathf.Max(maxValues.y, point.y);
-        maxValues.z = Mathf.Max(maxValues.z, point.z);
+        //if(point.z > 0)
+            //Debug.Log(point.z);
+
+        if (zLogarithmicScale)
+        {
+            point.z = Mathf.Log10(point.z + 1);
+        }
+
+        if (xRelative)
+            maxValues.x = Mathf.Max(maxValues.x, point.x);
+        if(yRelative)
+            maxValues.y = Mathf.Max(maxValues.y, point.y);
+        if(zRelative)
+            maxValues.z = Mathf.Max(maxValues.z, point.z);
+
 
         Vector3 transformedPos = new Vector3();
-        transformedPos.x = (point.x / maxValues.x) * dimension.x;
-        transformedPos.y = (point.y / maxValues.y) * dimension.y;
-        transformedPos.z = (point.z / maxValues.z) * dimension.z;
+        transformedPos.x = (point.x / maxValues.x) * dimension.x/* - transform.position.x*/;
+        transformedPos.y = (point.y / maxValues.y) * dimension.y/* - transform.position.y*/;
+        transformedPos.z = (point.z / maxValues.z) * dimension.z/* - transform.position.z*/;
+
         return transformedPos;
     }
 

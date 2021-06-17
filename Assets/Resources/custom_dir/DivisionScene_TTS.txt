@@ -1,0 +1,6 @@
+Bienvenue dans cette simulation de ruche en réalité virtuelle.
+Vous pouvez interagir avec la plupart des OBJETS qui se trouvent dans cette scène.
+Pour attraper un OBJET, utilisez les boutons de "GRIP". Certains OBJETS peuvent effectuer une ACTION avec la GACHETTE une fois saisis.
+Votre objectif est de réaliser une DIVISION. Pour cela déplacez la moitier des CADRES de la RUCHE ROUGE dans la BLEUE en incluant la REINE.
+Inutile d'essayer d'être trop précis, les CADRES se placeront eux-même dans la ruche.
+Lorsque vous aurez terminé, APPUYEZ sur A.

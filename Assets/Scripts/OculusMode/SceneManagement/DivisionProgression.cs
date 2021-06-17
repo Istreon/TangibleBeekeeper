@@ -38,7 +38,10 @@ public class DivisionProgression : MonoBehaviour
 
         displayText = new List<string>();
         subText = textBox.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        string[] lines = System.IO.File.ReadAllLines("Assets/Audio/DivisionScene/TTS.txt");
+        TextAsset f = (TextAsset)Resources.Load("custom_dir/" + "DivisionScene_TTS");
+        string fileText = System.Text.Encoding.UTF8.GetString(f.bytes);
+        //string[] lines = System.IO.File.ReadAllLines(fileText);
+        string[] lines = fileText.Split('\n');
         foreach (string l in lines)
         {
             displayText.Add(l);

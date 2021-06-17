@@ -23,11 +23,13 @@ public class BeesData : MonoBehaviour
 
     //Lists to store data and instantiate the graph
     public List<List<Bee>> beeData = new List<List<Bee>>();
+    public List<List<Bee>> deadBees = new List<List<Bee>>();
+    public List<List<Bee>> bornBees = new List<List<Bee>>();
     [HideInInspector]
     public List<Vector3> beeMax = new List<Vector3>();
     public List<Bee> bees = new List<Bee>();
     public List<int[]> beePopulation = new List<int[]>();
-    private List<string> otherTasks = new List<string>() {"EggTask", "LarvaTask", "NympheaTask", "Rest"};
+    private List<string> otherTasks = new List<string>() {"EggTask", "LarvaTask", "NympheaTask"};
     private List<int> timeScale = new List<int>();
 
     //Time parameters
@@ -36,7 +38,13 @@ public class BeesData : MonoBehaviour
     [HideInInspector]
     public int turnIndex = 0;
     [HideInInspector]
+    public bool forward = true;
+    [HideInInspector]
     public int nbOfTurns = 0;
+    private bool joyActivated = false;
+    private float joyTime = 0.0f;
+    private float activationTime = 0.0f;
+    private float joyValue = 0.0f;
 
     //Lists to retrieve the data from .csv
     private List<int> turns = new List<int>();
@@ -47,7 +55,7 @@ public class BeesData : MonoBehaviour
     private List<float> realAges = new List<float>();
     private List<float> exchanges = new List<float>();
     private int scenarioIndex = 0;
-    private string path = "Assets/Logs/logsScenario0.csv";
+    private string fileName = "logsScenario0";
 
     //Instance to link & update the data to the graph
     public ContactGrapherRetriever grapherRetriever;
@@ -72,6 +80,7 @@ public class BeesData : MonoBehaviour
         beeMax = new List<Vector3>();
         bees = new List<Bee>();
         beePopulation = new List<int[]>();
+        deadBees = new List<List<Bee>>();
         currentTurn = 0;
         turnIndex = 0;
         nbOfTurns = 0;
@@ -83,9 +92,9 @@ public class BeesData : MonoBehaviour
         realAges = new List<float>();
         exchanges = new List<float>();
         
-        RetrieveData(path);
+        RetrieveData(fileName);
         
-        Debug.Log("Total of turns: " + turns.Count);
+        //Debug.Log("Total of turns: " + turns.Count);
 
         //Data storage in the different lists
         currentTurn = turns[0];
@@ -110,6 +119,8 @@ public class BeesData : MonoBehaviour
             }
             
         }
+        GetDeadBees();
+        GetNewBornBees();
         bees = beeData[0];
         bees[0].ToString();
         nbOfTurns = beeData.Count;
@@ -123,33 +134,55 @@ public class BeesData : MonoBehaviour
 
     private void Update()
     {
-        if(device.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 lJoyValue))
+        
+        CheckJoyActivated();
+        
+        if(joyActivated)
         {
-            if(lJoyValue.x > 0.5f && timeSlider.value < timeSlider.maxValue)
+            //Debug.Log("Entered if(joyActivated) condition");
+            float deltaT = Time.realtimeSinceStartup - activationTime;
+            if( deltaT <= 3.0f && Time.realtimeSinceStartup - joyTime >= 0.67f)
             {
-                turnIndex += 1;
+                //Debug.Log("Time update at slow pace");
+                UpdateTime(joyValue);
             }
-            else if(lJoyValue.x < -0.5f && timeSlider.value > 0)
+            if(deltaT > 3.0f && deltaT <= 10.0f && Time.realtimeSinceStartup - joyTime >= 0.33f)
             {
-                turnIndex -=1;
-             }
-            timeSlider.value = turnIndex;
-            grapherRetriever.maxValues = beeMax[turnIndex];
-            instant.text = "T0 + " + GetTurnDay(timeScale[turnIndex]);
-            nourrices.text = "Nourrices : " + beePopulation[turnIndex][0];
-            butineuses.text = "Butineuses : " + beePopulation[turnIndex][1];  
+                //Debug.Log("Time update at medium pace");
+                UpdateTime(joyValue);
+            }
+            if(deltaT > 10.0f)
+            {
+                //Debug.Log("Time update at fast pace");
+                UpdateTime(joyValue);
+            }
         }
+            
+            
+        timeSlider.value = turnIndex;
+        grapherRetriever.maxValues = beeMax[turnIndex];
+        instant.text = "T0 + " + GetTurnDay(timeScale[turnIndex]);
+        nourrices.text = "Nourrices : " + beePopulation[turnIndex][0];
+        butineuses.text = "Butineuses : " + beePopulation[turnIndex][1]; 
     }
 
 
-    public void RetrieveData(string path)
+    public void RetrieveData(string fileName)
     {
-        string[] lines = System.IO.File.ReadAllLines(path);
+        TextAsset f = (TextAsset)Resources.Load("custom_dir/" + fileName);
+        string fileText = System.Text.Encoding.UTF8.GetString(f.bytes);
+        string[] lines = fileText.Split('\n');
+        Debug.Log(lines[0]);
+        Debug.Log(lines[1]);
+        string[] lineOne = lines[1].Split(',');
+        Debug.Log(lineOne[0] + lineOne[0].GetType());
         for(int i = 1; i< lines.Length; i++)
         {
-            string[] columns = lines[i].Split(',');
+            string l = (string) lines[i];
+            //Debug.Log(l);
+            string[] columns = l.Split(',');
             
-            turns.Add(int.Parse(columns[0]));
+            turns.Add(int.Parse((string)columns[0]));
             ids.Add(int.Parse(columns[1]));
             tasks.Add(columns[2]);
             hjs.Add(float.Parse(columns[3].Replace('.',',')));
@@ -195,12 +228,111 @@ public class BeesData : MonoBehaviour
         return day;
     }
 
+    public void GetDeadBees()
+    {
+        deadBees.Add(new List<Bee>());
+        for(int i = 1; i < beeData.Count; i ++)
+        {
+            List<Bee> newDeads = new List<Bee>();
+            foreach (Bee oldB in beeData[i-1])
+            {
+                if(!ContainsBee(beeData[i], oldB))
+                {
+                    newDeads.Add(oldB);
+                }
+            }
+            deadBees.Add(newDeads);
+            //Debug.Log("Turn No. " + i + " with " + deadBees[i].Count + " dead bees");
+        }          
+    }
+
+    public void GetNewBornBees()
+    {
+        for(int i = 0; i < beeData.Count - 1; i++)
+        {
+            List<Bee> newBorns = new List<Bee>();
+            foreach(Bee newB in beeData[i+1])
+            {
+                if(!ContainsBee(beeData[i], newB))
+                {
+                    newBorns.Add(newB);
+                }
+            }
+            bornBees.Add(newBorns);
+            //Debug.Log("Turn No. " + i + " with " + bornBees[i].Count + " new bees");
+        }
+    }
+
+    public bool ContainsBee(List<Bee> beeList, Bee b)
+    {
+        foreach (Bee bee in beeList)
+        {
+            if(b.id == bee.id)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void InitializeSlider(Slider slider)
     {
         slider.minValue = 0;
         slider.maxValue = nbOfTurns-1;
         slider.wholeNumbers = true;
         slider.value = 0;
+    }
+    public void UpdateTime(float joystickX)
+    {
+        //Debug.Log("Entered UpdateTime()");
+        if(joystickX > 0.2f && timeSlider.value < timeSlider.maxValue)
+        {
+            //Debug.Log("Updated forward");
+            turnIndex += 1;
+            joyTime = Time.realtimeSinceStartup;
+            forward = true;
+        }
+        else if(joystickX < -0.2f && timeSlider.value > 0.0f)
+        {
+            //Debug.Log("Updated backward");
+            turnIndex -= 1;
+            joyTime = Time.realtimeSinceStartup;
+            forward = false;
+        }
+    }
+
+    public void CheckJoyActivated()
+    {
+        //Debug.Log("CheckJoyActivated()");
+        if(device.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 lJoyValue))
+        {
+            joyValue = lJoyValue.x;
+            if(!joyActivated && Math.Abs(joyValue) > 0.1f)
+            {
+                //Debug.Log("Joystick is being activated");
+                joyActivated = true;
+                activationTime = Time.realtimeSinceStartup;
+                joyTime = Time.realtimeSinceStartup;
+                return;
+                
+            }
+            else if(joyActivated && Math.Abs(joyValue) < 0.1f)
+            {
+                //Debug.Log("Joystick is being deactivated");
+                joyActivated = false;
+                return;
+            }
+            /*if(lJoyValue.x > 0.2f && timeSlider.value < timeSlider.maxValue)
+            {
+                turnIndex += 1;
+                forward = true;
+            }
+            else if(lJoyValue.x < -0.2f && timeSlider.value > 0.0f)
+            {
+                turnIndex -= 1;
+                forward = false;
+            }*/
+        }
     }
 
     public void GetDevice()
@@ -216,9 +348,10 @@ public class BeesData : MonoBehaviour
     public void NextScenario()
     {
         scenarioIndex = (scenarioIndex + 1) % 2;
-        path = "Assets/Logs/logsScenario" + scenarioIndex + ".csv";
+        fileName = "logsScenario" + scenarioIndex;
         graphImage.sprite = images[scenarioIndex];
         graphImage.preserveAspect = true;
+        grapherRetriever.clearGraph();
         InitializeGraph();
     }
 
