@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743be2dd30678dd449a898adf48963de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointModel: {fileID: 787641682954752299, guid: c7e70a393a486e7468a87332d235a5a2,
+    type: 3}
   pointsSize: 1
   serverRefreshRate: 1000
   startingIndex: -1
@@ -71,7 +73,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -96,4 +97,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}

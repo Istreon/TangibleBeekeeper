@@ -170,25 +170,43 @@ public class BeesData : MonoBehaviour
     public void RetrieveData(string fileName)
     {
         TextAsset f = (TextAsset)Resources.Load("custom_dir/" + fileName);
-        string fileText = System.Text.Encoding.UTF8.GetString(f.bytes);
-        string[] lines = fileText.Split('\n');
-        Debug.Log(lines[0]);
+        //string fileText = System.Text.Encoding.UTF8.GetString(f.bytes);
+        string[] lines = f.text.Split('\n');
+        /*Debug.Log(lines[0]);
         Debug.Log(lines[1]);
         string[] lineOne = lines[1].Split(',');
         Debug.Log(lineOne[0] + lineOne[0].GetType());
+        int lineOneFirst = int.Parse(lineOne[0]);
+        Debug.Log("\'string\' version: " + lineOne[0] + " ; \'int\' (parsed) version: " + lineOneFirst);*/
         for(int i = 1; i< lines.Length; i++)
         {
             string l = (string) lines[i];
             //Debug.Log(l);
             string[] columns = l.Split(',');
+
+            int turn;
+            if(int.TryParse(columns[0], out turn))
+            {
+                turns.Add(turn);
+            }
+            else
+            {
+                Debug.LogError("TryParse failed for string " + columns[0] + " at line " + i);
+            }
+            int id = int.Parse(columns[1]);
+            string task = columns[2];
+            float hj = float.Parse(columns[3].Replace('.', ','));
+            float eo = float.Parse(columns[4].Replace('.', ','));
+            float realAge = float.Parse(columns[5].Replace('.', ','));
+            float exchange = float.Parse(columns[6].Replace('.', ','));
             
-            turns.Add(int.Parse((string)columns[0]));
-            ids.Add(int.Parse(columns[1]));
-            tasks.Add(columns[2]);
-            hjs.Add(float.Parse(columns[3].Replace('.',',')));
-            eos.Add(float.Parse(columns[4].Replace('.',',')));
-            realAges.Add(float.Parse(columns[5].Replace('.',',')));
-            exchanges.Add(float.Parse(columns[6].Replace('.',',')));
+            
+            ids.Add(id);
+            tasks.Add(task);
+            hjs.Add(hj);
+            eos.Add(eo);
+            realAges.Add(realAge);
+            exchanges.Add(exchange);
         }
     }
 

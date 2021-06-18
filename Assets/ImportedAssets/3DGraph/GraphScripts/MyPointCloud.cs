@@ -7,6 +7,7 @@ using UnityEngine.Profiling;
 
 public class MyPointCloud : MonoBehaviour
 {
+    public GameObject pointModel;
     public class MyPoint
     {
         public Vector3 pos;
@@ -14,15 +15,36 @@ public class MyPointCloud : MonoBehaviour
         public Vector3 origin;
         public float timeAtLastUpdate;
         public bool enabled = true;
+        public GameObject pointModel;
 
         public Color color = Color.black;
 
-        public MyPoint(Vector3 pos)
+        public MyPoint(Vector3 pos/*, GameObject model*/)
         {
             this.pos = pos;
             this.origin = pos;
             this.target = pos;
             timeAtLastUpdate = -1;
+            //SetPoint(model);
+        }
+
+        public void SetColor(Color c)
+        {
+            Renderer r = pointModel.GetComponent<Renderer>();
+            r.material.color = c;
+        }
+
+        public void SetPoint(GameObject model)
+        {
+            this.pointModel = model;
+            this.pointModel.transform.position = this.pos;
+            SetColor(this.color);
+        }
+
+        public void UpdatePosition(Vector3 newPos)
+        {
+            this.pos = newPos;
+            this.pointModel.transform.position = this.pos;
         }
 
         /*
@@ -110,7 +132,7 @@ public class MyPointCloud : MonoBehaviour
         }
         else
         {
-            thePoint = new MyPoint(newTarget);
+            thePoint = new MyPoint(newTarget/*, Instantiate(pointModel, transform)*/);
             //points[pointId] = thePoint;
             points.Add(pointId, thePoint);
 
@@ -176,6 +198,10 @@ public class MyPointCloud : MonoBehaviour
                         Mathf.Lerp(p.origin.x, p.target.x, t),
                         Mathf.Lerp(p.origin.y, p.target.y, t),
                         Mathf.Lerp(p.origin.z, p.target.z, t));
+                    /*p.UpdatePosition(new Vector3(
+                        Mathf.Lerp(p.origin.x, p.target.x, t),
+                        Mathf.Lerp(p.origin.y, p.target.y, t),
+                        Mathf.Lerp(p.origin.z, p.target.z, t)));*/
                 }
             }
 
