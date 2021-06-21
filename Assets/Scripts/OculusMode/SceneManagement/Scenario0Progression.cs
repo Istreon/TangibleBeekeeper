@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class GraphProgression : MonoBehaviour
+public class Scenario0Progression : MonoBehaviour
 {
     public InputDeviceCharacteristics rightCharacteristics;
     private InputDevice targetDevice;
@@ -75,15 +75,37 @@ public class GraphProgression : MonoBehaviour
                 CheckIfNext();
             }
             
-            else
+            else if(sceneIndex == displayText.Count)
             {
+                canContinue = false;
                 Debug.Log("Step 2: graph study");
                 textBox.SetActive(false);
                 CheckIfNext();
             }
+            else if(sceneIndex == displayText.Count + 1)
+            {
+                canContinue = false;
+                Debug.Log("Waiting screen activated");
+                waitingScreen.SetActive(true);
+                blackBox.EnableBlackBoxMode();
+                ambientSound.Stop();
+            }
+            else if(sceneIndex == displayText.Count + 2)
+            {
+                canContinue = false;
+                blackBox.EnableBlackBoxMode();
+                waitingScreen.SetActive(false);
+                loadingScreen.gameObject.SetActive(true);
+                loadingScreen.StartLoading("Scenario1Scene");
+            }
         }
 
-        if(nbOfGraphs <= 0)
+        if(!sceneAudio.isPlaying)
+        {
+            CheckIfNext();
+        }
+
+        /*if(nbOfGraphs <= 0)
         {
             Debug.Log("Step 3: end of the simulation");
             endScreen.SetActive(true);
@@ -120,7 +142,7 @@ public class GraphProgression : MonoBehaviour
             }
         }
 
-        CheckIfNext();
+        CheckIfNext();*/
     }
 
     public void CanContinue()
@@ -140,8 +162,9 @@ public class GraphProgression : MonoBehaviour
         else if (btnALastState)
         {
             btnALastState = false;
+            CanContinue();
             //Debug.Log("\'A\' released");
-            if(sceneIndex < displayText.Count)
+            /*if(sceneIndex < displayText.Count)
             {
                 CanContinue();
             }
@@ -149,7 +172,7 @@ public class GraphProgression : MonoBehaviour
             {
                 wasAPressed = true;
                 isWaiting = !isWaiting;
-            }
+            }*/
         } 
     }
 }

@@ -11,11 +11,23 @@ public class WoodFrameManager : MonoBehaviour
     public GameObject queen;
     private bool hasQueen = false;
 
+    public enum FrameType
+    {
+        CouvainOuvert = 0,
+        CouvainFerme = 1,
+        Pollen = 2,
+        Miel = 3,
+    }
+
+    public FrameType frameType;
+
     public List<GameObject> grabPoints;
+
+    public List<GameObject> frameTypeList;
 
     private float[] yPos = new float[2] {-0.2665f, -0.0052f};
     private float[] xPos = new float[2] {-0.2008f, 0.2008f};
-    private float zPos = 0.009f;
+    private float zPos = 0.015f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +35,12 @@ public class WoodFrameManager : MonoBehaviour
         grabInteractor = gameObject.GetComponent<GrabInteractor>();
         newHiveSpot = gameObject.transform.localPosition;
         newParent = gameObject.transform.parent.gameObject.GetComponent<HiveManager>();
+
+        foreach (GameObject type in frameTypeList)
+        {
+            type.SetActive(false);
+        }
+        frameTypeList[((int)frameType)].SetActive(true);
     }
 
     // Update is called once per frame
@@ -120,6 +138,16 @@ public class WoodFrameManager : MonoBehaviour
         {
             gp.SetActive(true);
         }
+    }
+
+    public void SetFrameType(FrameType type)
+    {
+        frameType = type;
+        foreach (GameObject g in frameTypeList)
+        {
+            g.SetActive(false);
+        }
+        frameTypeList[(int)frameType].SetActive(true);
     }
 
 }

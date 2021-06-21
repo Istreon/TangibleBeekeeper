@@ -96,7 +96,7 @@ public class DivisionProgression : MonoBehaviour
                 blackBox.EnableBlackBoxMode();
                 waitingScreen.SetActive(false);
                 loadingScreen.gameObject.SetActive(true);
-                loadingScreen.StartLoading("GraphScene");
+                loadingScreen.StartLoading("Scenario0Scene");
             }
         }
 

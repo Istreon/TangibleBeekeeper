@@ -38,6 +38,15 @@ public class HiveManager : MonoBehaviour
                 newFrame.transform.localEulerAngles = Vector3.zero;
                 hiveSpotDict.Add(pos, newFrame);
                 nbOfFrames += 1;
+                WoodFrameManager frameManager = newFrame.GetComponent<WoodFrameManager>();
+                if(i == 0 | i == 9)
+                    frameManager.SetFrameType(WoodFrameManager.FrameType.Miel);
+                else if(i == 1 | i == 8)
+                    frameManager.SetFrameType(WoodFrameManager.FrameType.Pollen);
+                else if(i == 2 | i == 5)
+                    frameManager.SetFrameType(WoodFrameManager.FrameType.CouvainOuvert);
+                else
+                    frameManager.SetFrameType(WoodFrameManager.FrameType.CouvainFerme);
             }
             else if(hiveState == HiveState.Divided)
             {

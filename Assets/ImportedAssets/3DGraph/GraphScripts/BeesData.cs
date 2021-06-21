@@ -146,12 +146,12 @@ public class BeesData : MonoBehaviour
                 //Debug.Log("Time update at slow pace");
                 UpdateTime(joyValue);
             }
-            if(deltaT > 3.0f && deltaT <= 10.0f && Time.realtimeSinceStartup - joyTime >= 0.33f)
+            if(deltaT > 3.0f && deltaT <= 6.0f && Time.realtimeSinceStartup - joyTime >= 0.33f)
             {
                 //Debug.Log("Time update at medium pace");
                 UpdateTime(joyValue);
             }
-            if(deltaT > 10.0f)
+            if(deltaT > 6.0f)
             {
                 //Debug.Log("Time update at fast pace");
                 UpdateTime(joyValue);
