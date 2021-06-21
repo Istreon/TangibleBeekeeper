@@ -2000,6 +2000,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4086777034926480844}
     m_Modifications:
+    - target: {fileID: 1751121700828664417, guid: 407ee6106a35859458353c77a8354558,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0003
+      objectReference: {fileID: 0}
     - target: {fileID: 6811793987325147679, guid: 407ee6106a35859458353c77a8354558,
         type: 3}
       propertyPath: m_RootOrder
@@ -2065,6 +2070,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8957682290702970376, guid: 407ee6106a35859458353c77a8354558,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0003
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 407ee6106a35859458353c77a8354558, type: 3}
 --- !u!4 &5845783165342755334 stripped
@@ -2086,6 +2096,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4086777034926480844}
     m_Modifications:
+    - target: {fileID: 1168535655512156353, guid: 91452e776245f484b9c1e5969189c477,
+        type: 3}
+      propertyPath: m_text
+      value: "Couvain ferm\xE9\n+\nAbeilles"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168535655512156353, guid: 91452e776245f484b9c1e5969189c477,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168535655512156353, guid: 91452e776245f484b9c1e5969189c477,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3518155234607327178, guid: 91452e776245f484b9c1e5969189c477,
         type: 3}
       propertyPath: m_Name
@@ -2095,6 +2120,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312199381726907992, guid: 91452e776245f484b9c1e5969189c477,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0003
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555679716237479033, guid: 91452e776245f484b9c1e5969189c477,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0003
       objectReference: {fileID: 0}
     - target: {fileID: 7777579197695984682, guid: 91452e776245f484b9c1e5969189c477,
         type: 3}
@@ -2487,6 +2522,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4221594789674697342, guid: 7a17af2ebb2bbeb42a14cdd9829f4bdf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4574128016322363372, guid: 7a17af2ebb2bbeb42a14cdd9829f4bdf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0003
+      objectReference: {fileID: 0}
     - target: {fileID: 8619728971813417486, guid: 7a17af2ebb2bbeb42a14cdd9829f4bdf,
         type: 3}
       propertyPath: m_RootOrder
@@ -2627,6 +2672,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4420342466681182628, guid: 2ccbd24ccfe2e7842b417002a2f981da,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794359521188307490, guid: 2ccbd24ccfe2e7842b417002a2f981da,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ccbd24ccfe2e7842b417002a2f981da, type: 3}

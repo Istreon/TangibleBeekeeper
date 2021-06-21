@@ -4450,7 +4450,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: pour commencer, APPUYEZ sur n'importe quel BOUTON
+  m_text: pour commencer, APPUYEZ sur A
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 45fcd39f5b856a141abc19158f2d5f4e, type: 2}
@@ -4519,10 +4519,10 @@ MonoBehaviour:
   m_margin: {x: -284.21042, y: 0, z: -275.55704, w: 0}
   m_textInfo:
     textComponent: {fileID: 1836139364}
-    characterCount: 49
+    characterCount: 29
     spriteCount: 0
-    spaceCount: 6
-    wordCount: 7
+    spaceCount: 4
+    wordCount: 5
     linkCount: 0
     lineCount: 1
     pageCount: 1

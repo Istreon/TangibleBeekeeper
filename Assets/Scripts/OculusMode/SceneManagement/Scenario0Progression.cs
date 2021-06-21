@@ -6,10 +6,14 @@ using UnityEngine.XR;
 public class Scenario0Progression : MonoBehaviour
 {
     public InputDeviceCharacteristics rightCharacteristics;
-    private InputDevice targetDevice;
+    private InputDevice rightDevice;
+    public InputDeviceCharacteristics leftCharacteristics;
+    private InputDevice leftDevice;
     private int sceneIndex;
     private bool wasAPressed;
     private bool btnALastState = false;
+    private bool btnXLastState = false;
+    private bool isGoingBack = false;
     private int nbOfAPressed = 0;
     private bool canContinue = true;
     public BeesData dataModel;
@@ -31,8 +35,12 @@ public class Scenario0Progression : MonoBehaviour
     {
         List<InputDevice> devices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(rightCharacteristics, devices);
-        targetDevice = devices[0];
-        Debug.Log("Using device " + targetDevice.name);
+        rightDevice = devices[0];
+        Debug.Log("Using device " + rightDevice.name);
+
+        devices = new List<InputDevice>();
+        InputDevices.GetDevicesWithCharacteristics(leftCharacteristics, devices);
+        leftDevice = devices[0];
 
         waitingScreen.SetActive(false);
         endScreen.SetActive(false);
@@ -143,6 +151,24 @@ public class Scenario0Progression : MonoBehaviour
         }
 
         CheckIfNext();*/
+
+        if(leftDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool xPressed) && xPressed)
+        {
+            btnXLastState  =true;
+        }
+        else if(btnXLastState)
+        {
+            btnXLastState = false;
+            if(!isGoingBack)
+            {
+                isGoingBack = true;
+                blackBox.EnableBlackBoxMode();
+                loadingScreen.gameObject.SetActive(true);
+                loadingScreen.StartLoading("DivisionScene");
+            }
+        }
+
+
     }
 
     public void CanContinue()
@@ -154,7 +180,7 @@ public class Scenario0Progression : MonoBehaviour
     private void CheckIfNext()
     {
         //Debug.Log("Entered CheckIfNext()");
-        if(targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPressed) && isPressed)
+        if(rightDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPressed) && isPressed)
         {
             btnALastState = true;
             //Debug.Log("\'A\' pressed");

@@ -34,8 +34,8 @@ public class LobbyProgression : MonoBehaviour
         loadingScene = false;
 
         List<InputDevice> devices = new List<InputDevice>();
-        InputDevices.GetDevicesWithCharacteristics(leftChara, devices);
-        leftDevice = devices[0];
+        /*InputDevices.GetDevicesWithCharacteristics(leftChara, devices);
+        leftDevice = devices[0];*/
 
         devices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(rightChara, devices);
@@ -47,7 +47,7 @@ public class LobbyProgression : MonoBehaviour
     {
         if(isWaiting && !loadingScene)
         {
-            if(leftDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool lPrimaryBtn) && lPrimaryBtn)
+            /*if(leftDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool lPrimaryBtn) && lPrimaryBtn)
             {
                 lPBLastSate = true;
             }
@@ -55,7 +55,7 @@ public class LobbyProgression : MonoBehaviour
             {
                 isWaiting = false;
                 lPBLastSate = false;
-            }
+            }*/
             if(rightDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool rPrimaryBtn) && rPrimaryBtn)
             {
                 rPBLastState = true;
@@ -65,7 +65,7 @@ public class LobbyProgression : MonoBehaviour
                 isWaiting = false;
                 rPBLastState = false;
             }
-            if(leftDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool lSecondaryBtn) && lSecondaryBtn)
+            /*if(leftDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool lSecondaryBtn) && lSecondaryBtn)
             {
                 lSBLastState = true;
             }
@@ -118,7 +118,7 @@ public class LobbyProgression : MonoBehaviour
             {
                 isWaiting = false;
                 rTLastState = false;
-            }
+            }*/
         }
         
         if(!isWaiting && !loadingScene)
