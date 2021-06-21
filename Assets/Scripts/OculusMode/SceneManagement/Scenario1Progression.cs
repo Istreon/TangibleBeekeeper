@@ -89,7 +89,7 @@ public class Scenario1Progression : MonoBehaviour
                 isGoingBack = true;
                 blackBox.EnableBlackBoxMode();
                 loadingScreen.gameObject.SetActive(true);
-                loadingScreen.StartLoading("DivisionScene");
+                loadingScreen.StartLoading("Scenario0Scene");
             }
         }
 

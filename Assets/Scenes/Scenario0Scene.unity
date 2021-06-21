@@ -51,7 +51,7 @@ LightmapSettings:
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
+    m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 12
@@ -17323,6 +17323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightCharacteristics: 576
+  leftCharacteristics: 320
   dataModel: {fileID: 1906275841}
   textBox: {fileID: 1451390224}
   playAudio:
