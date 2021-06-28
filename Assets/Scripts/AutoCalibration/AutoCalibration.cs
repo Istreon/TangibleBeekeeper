@@ -17,15 +17,11 @@ public class AutoCalibration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Searching for control map (to use "space" key)
         var keyboardActionMap = control.FindActionMap("KeyboardMap");
         actionCalibration = keyboardActionMap.FindAction("Calibrate");
         actionCalibration.performed += OnActivation;
         actionCalibration.Enable();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     void OnActivation(InputAction.CallbackContext context)
@@ -35,14 +31,18 @@ public class AutoCalibration : MonoBehaviour
 
     void Calibrate()
     {
+        //Calculate rotation difference between headset rotation and headset expected rotation
         Vector3 rotDiff = Vector3.zero;
         rotDiff.y = mainCamera.rotation.eulerAngles.y - this.transform.rotation.eulerAngles.y;
-        Debug.Log(rotDiff);
 
+        //Update Optitrack origin rotation
         optitrackSpaceTransform.Rotate(rotDiff, Space.Self);
 
+        //Calculate position difference between headset position and headset expected position
         Vector3 diff = mainCamera.position - this.transform.position;
         diff.y = 0.0f;
+
+        //Update Optitrack Origin position
         optitrackSpaceTransform.position = optitrackSpaceTransform.position + diff;     
    
 

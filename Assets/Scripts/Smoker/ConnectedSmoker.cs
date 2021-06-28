@@ -15,11 +15,13 @@ public class ConnectedSmoker : MonoBehaviour
     private StreamReader theReader;
 
     [SerializeField]
-    private String Host = "10.29.238.39";
+    private String Host = "10.29.239.64";
     private Int32 Port = 80;
 
     private Smoker smokerControlled;
     private bool active=false;
+
+    float timer = 2.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,12 +34,15 @@ public class ConnectedSmoker : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-        if (!socketReady)
+        //Try to connect again if the last try failed
+        if (!socketReady && timer > 2.0f)
         {
             setupSocket();
             readSocket();
-        } 
+        }  else
+        {
+            timer += Time.deltaTime;
+        }
     }
     // Update is called once per frame
     void Update()
@@ -47,6 +52,7 @@ public class ConnectedSmoker : MonoBehaviour
         {
            //Debug.Log(msg.ToString());
             if (!active && msg.Equals("On") && smokerControlled!=null) {
+                //Release smoke from the somker
                 smokerControlled.ReleaseSmoke();
                 active=true;
             }
@@ -67,6 +73,7 @@ public class ConnectedSmoker : MonoBehaviour
         }
         catch (Exception e) {
             Debug.Log("Socket error: " + e);
+            timer = 0.0f;
         }
     }
     public String readSocket() { 

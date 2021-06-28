@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+/*--This script activate different gameObject from an array in the same order as they are stored is the array. Only one gameobject is activate at each time*/
 public class AnimateWings : MonoBehaviour
 {
 
@@ -26,9 +29,6 @@ public class AnimateWings : MonoBehaviour
         if (actualPosition == nbPosition - 1) direction = -1;
         if (actualPosition == 0) direction = 1;
         actualPosition = actualPosition + direction % nbPosition;
-        /*
-        this.transform.localPosition = positions[actualPosition].localPosition;
-        this.transform.localRotation = positions[actualPosition].localRotation;*/
 
         foreach(GameObject w in wings)
         {

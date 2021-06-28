@@ -36,7 +36,9 @@ public class BeeFakeBehaviourRigidbody : MonoBehaviour
             beeBody.AddForce(dir*power);
         }
 
+        //Add random force to the bee
         beeBody.AddForce(new Vector3((Random.value-0.5f)/1000.0f, (Random.value-0.5f)/1000.0f, (Random.value-0.5f)/1000.0f));
+        //Update look orientation of the bee
         this.transform.LookAt(this.transform.position + beeBody.velocity);
 
         float temp = Vector3.Distance(beeBody.velocity, new Vector3());

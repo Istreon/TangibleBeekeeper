@@ -7,6 +7,8 @@ public class Optitrack_mode : MonoBehaviour
 
     private void Start()
     {
+        //If there is a Settings manager, it will check if Optitrack is enable.
+        //Depending of the result, it will active or disable different gameobject in the game.
         SettingsManager temp=FindObjectOfType<SettingsManager>();
         if(temp!=null)
         {

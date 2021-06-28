@@ -74,6 +74,7 @@ public class Smoker : MonoBehaviour
     }
 
 
+    /*Release smoke and update smoker internal state (start animation)*/
     public void ReleaseSmoke()
     {
         if (timeSinceLastSmoke > delayBetweenSmoke)
@@ -90,6 +91,8 @@ public class Smoker : MonoBehaviour
        
     }
 
+
+    /*Animate the pump of the smoker*/
     public void SmokerAnimation()
     {
         woodPlanch.transform.localPosition = Vector3.Lerp(openWoodPlanch.localPosition, closedWoodPlanch.localPosition, state);
