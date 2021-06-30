@@ -7,6 +7,8 @@ TagManager:
   - Catchable
   - InteractiveWithSwitchButton
   - Frame
+  - SceneLoader
+  - SceneManager
   layers:
   - Default
   - TransparentFX

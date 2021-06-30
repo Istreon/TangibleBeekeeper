@@ -4,37 +4,22 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.UI;
 
-public class DivisionProgression : MonoBehaviour
+public class DivisionProgression : SceneProgression
 {
-    private bool canContinue = true;
-    public InputDeviceCharacteristics rightCharacteristics;
-    private InputDevice targetDevice;
     public GameObject textBox;
     private TMPro.TextMeshProUGUI subText;
     private AudioSource sceneAudio;
     private List<string> displayText;
     public List<AudioClip> playAudio;
-    private int sceneIndex = 0;
-    private bool wasPressed = false;
-    private bool btnALastState = false;
-    //private bool areHivesDivided = false;
-
-    //public HiveManager firstHive;
-    //public HiveManager secondHive;
 
     public GameObject waitingScreen;
-    public List<AudioSource> ambientSound;
-    public LoadingScreen loadingScreen;
-    public BlackBoxMode blackBox;
 
     // Start is called before the first frame update
-    void Start()
+    override protected void Start()
     {
-        sceneAudio = gameObject.GetComponent<AudioSource>();
+        base.Start();
 
-        List<InputDevice> devices = new List<InputDevice>();
-        InputDevices.GetDevicesWithCharacteristics(rightCharacteristics, devices);
-        targetDevice = devices[0];
+        sceneAudio = this.gameObject.GetComponent<AudioSource>();
 
         displayText = new List<string>();
         subText = textBox.GetComponentInChildren<TMPro.TextMeshProUGUI>();
@@ -47,16 +32,18 @@ public class DivisionProgression : MonoBehaviour
             displayText.Add(l);
         }
 
-        sceneIndex = 0;
-        wasPressed = false;
-        btnALastState = false;
-        canContinue = true;
-        //areHivesDivided = false;
+        if(skipTuto)
+        {
+            sceneIndex = displayText.Count;
+        }
+
     }
 
     // Update is called once per frame
-    void Update()
+    override protected void Update()
     {
+        base.Update();
+
         if(canContinue && !sceneAudio.isPlaying)
         {
             if(sceneIndex < displayText.Count)
@@ -65,87 +52,89 @@ public class DivisionProgression : MonoBehaviour
                 canContinue = false;
                 textBox.SetActive(true);
                 subText.SetText(displayText[sceneIndex]);
-                sceneAudio.PlayOneShot(playAudio[sceneIndex]);
-                CheckIfAPressed();
+                sceneAudio.clip = playAudio[sceneIndex];
+                sceneAudio.Play();
+                CheckIfNext();
             }
             else if(sceneIndex == displayText.Count)
             {
                 Debug.Log("Step 2: division");
                 canContinue = false;
                 textBox.SetActive(false);
-                //areHivesDivided = CheckHivesStates();
-                CheckIfAPressed();
+                CheckIfNext();
             }
 
-            else if(sceneIndex == displayText.Count + 1)
+            else if(isWaiting && !isLoadingScene)
             {
                 Debug.Log("Step 3: wait for next mission");
                 canContinue = false;
-                foreach (AudioSource audio in ambientSound)
-                {
-                    audio.Stop();
-                }
-                blackBox.EnableBlackBoxMode();
-                waitingScreen.SetActive(true);
-                CheckIfAPressed();
+                GoToWaitingZone();
+                CheckIfNext();
             }
 
-            else if(sceneIndex == displayText.Count + 2)
+            else if(!isWaiting && !isLoadingScene)
             {
                 canContinue = false;
-                blackBox.EnableBlackBoxMode();
-                waitingScreen.SetActive(false);
-                loadingScreen.gameObject.SetActive(true);
-                loadingScreen.StartLoading("Scenario0Scene");
+                LoadNextScene();
             }
         }
 
-        if(!sceneAudio.isPlaying)
-        {
-            CheckIfAPressed();
-        }
-        
+        CheckIfNext();
+
+        CheckIfPrecedent();
     }
 
-    private void CanContinue()
+    override protected void SkipInScene()
     {
-        canContinue = true;
-        sceneIndex += 1;
+        base.SkipInScene();
+        sceneIndex = displayText.Count - 1;
     }
 
-    /*private bool CheckHivesStates()
+    public override void SkipOnLoad()
     {
-        Debug.Log("Entered CheckHivesStates()");
-        bool isFirstDiv = false;
-        bool isSecondDiv = false;
-        if(firstHive.IsDivided() && !firstHive.HasQueen())
-        {
-            Debug.Log("First hive divided: OK");
-            isFirstDiv = true;
-        }
-        if(secondHive.IsDivided() && secondHive.HasQueen())
-        {
-            Debug.Log("Secondhive divided: OK");
-            isSecondDiv = true;
-        }
+        base.SkipOnLoad();
+        Start();
+    }
 
-        return isFirstDiv && isSecondDiv;
-    }*/
-
-    private void CheckIfAPressed()
+    protected override void CanContinue()
     {
-        Debug.Log("Entered CheckIfAPressed()");
-        if(targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPressed) && isPressed)
+        base.CanContinue();
+        if(sceneAudio.isPlaying)
+            sceneAudio.Pause();
+        if(sceneIndex > displayText.Count)
         {
-            Debug.Log("Button \'A\' is being pressed");
-            btnALastState = true;
+            isWaiting = !isWaiting;
         }
-        else if (btnALastState)
-        {
-            Debug.Log("Button \'A\' was pressed");
-            btnALastState = false;
-            //wasPressed = true;
-            CanContinue();
-        }    
+    }
+
+    protected override void GoBack()
+    {
+        base.GoBack();
+        if(sceneAudio.isPlaying)
+            sceneAudio.Pause();
+    }
+    
+    protected override void GoToWaitingZone()
+    {
+        base.GoToWaitingZone();
+        waitingScreen.SetActive(true);
+    }
+
+    protected override void ReturnToGame()
+    {
+        base.ReturnToGame();
+        waitingScreen.SetActive(false);
+    }
+
+    protected override void LoadNextScene()
+    {
+        base.LoadNextScene();
+        waitingScreen.SetActive(false);
+    }
+
+    protected override void LoadPreviousScene()
+    {
+        base.LoadPreviousScene();
+        waitingScreen.SetActive(false);
     }
 }

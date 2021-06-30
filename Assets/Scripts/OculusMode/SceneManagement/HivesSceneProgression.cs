@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
@@ -75,7 +75,7 @@ public class HivesSceneProgression : MonoBehaviour
                 {
                     arrow.SetActive(false);
                 }
-            }*/
+            }
             ContinueScene();
         }
 
@@ -141,4 +141,4 @@ public class HivesSceneProgression : MonoBehaviour
             changeScene = true;
         }
     }
-}
+}*/

@@ -3,51 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class Scenario1Progression : MonoBehaviour
+public class Scenario1Progression : SceneProgression
 {
-    public InputDeviceCharacteristics rightCharacteristics;
-    public InputDeviceCharacteristics leftCharacteristics;
-    private InputDevice rightDevice;
-    private InputDevice leftDevice;
-    private int sceneIndex;
-    private bool btnALastState = false;
-    private bool btnXLastState = false;
-    private bool isGoingBack = false;
-    private bool canContinue = true;
     public BeesData dataModel;
     public GameObject endScreen;
-    private AudioSource sceneAudio;
-    public AudioSource ambientSound;
-    public BlackBoxMode blackBox;
-    private bool isWaiting = false;
-    public LoadingScreen loadingScreen;
     
     // Start is called before the first frame update
-    void Start()
+    override protected void Start()
     {
-        List<InputDevice> devices = new List<InputDevice>();
-        InputDevices.GetDevicesWithCharacteristics(rightCharacteristics, devices);
-        rightDevice = devices[0];
-        Debug.Log("Using device " + rightDevice.name);
-
-        devices = new List<InputDevice>();
-        InputDevices.GetDevicesWithCharacteristics(leftCharacteristics, devices);
-        leftDevice = devices[0];
-
-        endScreen.SetActive(false);
-        blackBox.DisableBlackBoxMode();
-        loadingScreen.gameObject.SetActive(false);
-
-        sceneIndex = 0;
-        canContinue = true;
-        isWaiting = false;
+        base.Start();
 
         dataModel.NextScenario();
 
     }
 
     // Update is called once per frame
-    void Update()
+    override protected void Update()
     {
         if(canContinue)
         {
@@ -57,63 +28,59 @@ public class Scenario1Progression : MonoBehaviour
                 Debug.Log("Step 2: graph study");
                 CheckIfNext();
             }
-            else if(sceneIndex == 1)
+            else if(isWaiting && !isLoadingScene)
             {
                 canContinue = false;
                 Debug.Log("End screen activated");
-                endScreen.SetActive(true);
-                blackBox.EnableBlackBoxMode();
-                ambientSound.Stop();
+                GoToWaitingZone();
             }
-            else if(sceneIndex == 2)
+            else if(!isWaiting && !isLoadingScene)
             {
                 canContinue = false;
-                blackBox.EnableBlackBoxMode();
-                endScreen.SetActive(false);
-                loadingScreen.gameObject.SetActive(true);
-                loadingScreen.StartLoading("LobbyScene");
+                LoadNextScene();
             }
         }
 
         CheckIfNext();
 
-        if(leftDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool xPressed) && xPressed)
-        {
-            btnXLastState  =true;
-        }
-        else if(btnXLastState)
-        {
-            btnXLastState = false;
-            if(!isGoingBack)
-            {
-                isGoingBack = true;
-                blackBox.EnableBlackBoxMode();
-                loadingScreen.gameObject.SetActive(true);
-                loadingScreen.StartLoading("Scenario0Scene");
-            }
-        }
+        CheckIfPrecedent();
 
     }
 
-    public void CanContinue()
+    protected override void CanContinue()
     {
-        sceneIndex += 1;
-        canContinue = true;
+        base.CanContinue();
+        isWaiting = !isWaiting;
     }
 
-    private void CheckIfNext()
+    protected override void GoToWaitingZone()
     {
-        //Debug.Log("Entered CheckIfNext()");
-        if(rightDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPressed) && isPressed)
-        {
-            btnALastState = true;
-            //Debug.Log("\'A\' pressed");
-        }
-        else if (btnALastState)
-        {
-            btnALastState = false;
-            CanContinue();
-            //Debug.Log("\'A\' released");
-        } 
+        base.GoToWaitingZone();
+        endScreen.SetActive(true);
     }
+
+    protected override void ReturnToGame()
+    {
+        base.ReturnToGame();
+        endScreen.SetActive(false);
+    }
+
+    protected override void LoadNextScene()
+    {
+        foreach (AudioSource audio in ambientSound)
+        {
+            audio.Stop();
+        }
+        blackBox.EnableBlackBoxMode();
+        endScreen.SetActive(false);
+        loadingScreen.StartLoading(0, false);
+        isLoadingScene = true;;
+    }
+
+    protected override void LoadPreviousScene()
+    {
+        base.LoadPreviousScene();
+        endScreen.SetActive(false);
+    }
+
 }

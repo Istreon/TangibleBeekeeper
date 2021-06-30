@@ -8,6 +8,14 @@ public class RotatorTowardsCam : MonoBehaviour
 
     public Camera cam;
 
+    private void Start()
+    {
+        if(cam == null)
+        {
+            cam = Camera.main;
+        }
+    }
+
     void FixedUpdate()
     {
         foreach(Transform t in toRotate)
