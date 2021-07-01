@@ -11,7 +11,8 @@ public class HandleManager : MonoBehaviour
     public Material unselected;
     public Material selected;
 
-    
+    [HideInInspector]
+    public bool isHovered;
     
     // Start is called before the first frame update
     void Start()
@@ -64,6 +65,7 @@ public class HandleManager : MonoBehaviour
             if(other.gameObject.TryGetComponent<HandInteractor>(out HandInteractor interactor))
             {
                 objectRend.material = selected;
+                isHovered = true;
             }
         }
         
@@ -76,6 +78,7 @@ public class HandleManager : MonoBehaviour
             if(other.gameObject.TryGetComponent<HandInteractor>(out HandInteractor interactor))
             {
                 objectRend.material = unselected;
+                isHovered = false;
             }
         }
     }

@@ -7,6 +7,8 @@ public class HandInteractor : XRDirectInteractor
 {
     public GameObject ghostHand;
 
+    private HandleManager target = null;
+
     public void SetAnchor(Transform anchor)
     {
         //Debug.Log("HandInteractor.SetAnchor");

@@ -527,6 +527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1571504626213741778}
   - component: {fileID: 1571504626213741783}
+  - component: {fileID: 2651095584160728732}
   - component: {fileID: 1571504626213741776}
   - component: {fileID: 4862149914862632321}
   m_Layer: 0
@@ -561,11 +562,25 @@ CapsuleCollider:
   m_GameObject: {fileID: 1571504626213741779}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
+  m_Enabled: 0
+  m_Radius: 0.01891305
+  m_Height: 0.115014255
+  m_Direction: 1
+  m_Center: {x: -0.007827168, y: -0.036136404, z: -0.03016115}
+--- !u!136 &2651095584160728732
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571504626213741779}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.04362719
-  m_Height: 0.1493915
-  m_Direction: 2
-  m_Center: {x: 0, y: -0.026581168, z: 0.027918024}
+  m_Radius: 0.011148331
+  m_Height: 0.082566604
+  m_Direction: 1
+  m_Center: {x: -0.0025790855, y: -0.040847167, z: 0.0545595}
 --- !u!114 &1571504626213741776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1733,6 +1748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1571504626526652192}
   - component: {fileID: 1571504626526652197}
+  - component: {fileID: 650488054171006564}
   - component: {fileID: 1571504626526652198}
   - component: {fileID: 8848938816895506288}
   m_Layer: 0
@@ -1767,11 +1783,25 @@ CapsuleCollider:
   m_GameObject: {fileID: 1571504626526652193}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.039083004
-  m_Height: 0.11024216
+  m_Enabled: 0
+  m_Radius: 0.01891305
+  m_Height: 0.115014255
   m_Direction: 1
-  m_Center: {x: 4.011352e-17, y: -0.035503298, z: 0.028427254}
+  m_Center: {x: -0.007827168, y: -0.036136404, z: -0.03016115}
+--- !u!136 &650488054171006564
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571504626526652193}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.011148331
+  m_Height: 0.082566604
+  m_Direction: 1
+  m_Center: {x: -0.0025790855, y: -0.040847167, z: 0.0545595}
 --- !u!114 &1571504626526652198
 MonoBehaviour:
   m_ObjectHideFlags: 0

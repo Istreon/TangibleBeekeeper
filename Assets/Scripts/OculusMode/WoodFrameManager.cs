@@ -8,7 +8,6 @@ public class WoodFrameManager : MonoBehaviour
     private GrabInteractor grabInteractor;
     private Vector3 newHiveSpot;
     private HiveManager newParent;
-    public GameObject queen;
     private bool hasQueen = false;
 
     public enum FrameType
@@ -17,6 +16,7 @@ public class WoodFrameManager : MonoBehaviour
         CouvainFerme = 1,
         Pollen = 2,
         Miel = 3,
+        Reine = 4
     }
 
     public FrameType frameType;
@@ -28,6 +28,9 @@ public class WoodFrameManager : MonoBehaviour
     private float[] yPos = new float[2] {-0.2665f, -0.0052f};
     private float[] xPos = new float[2] {-0.2008f, 0.2008f};
     private float zPos = 0.015f;
+
+    public bool isHovered;
+
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +77,12 @@ public class WoodFrameManager : MonoBehaviour
                 gp.layer = 10; //SecondGrabLayer, so that the grab points d not interact with the other objects
             }
         }
+
+        foreach (GameObject gp in grabPoints)
+        {
+            HandleManager handle = gp.GetComponent<HandleManager>();
+            isHovered = handle.isHovered;
+        }
     }
 
     public bool IsFrameGrabbed()
@@ -105,7 +114,7 @@ public class WoodFrameManager : MonoBehaviour
 
     public void SetQueen()
     {
-        Vector3 pos;
+        /*Vector3 pos;
         Vector3 rot;
         float mult = Random.Range(-1.0f, 1.0f);
         if(mult <= 0.0f)
@@ -120,7 +129,7 @@ public class WoodFrameManager : MonoBehaviour
         }
         GameObject hiveQueen = Instantiate(queen, transform);
         hiveQueen.transform.localPosition = pos;
-        hiveQueen.transform.localEulerAngles = rot;
+        hiveQueen.transform.localEulerAngles = rot;*/
         hasQueen = true;
     }
 
@@ -148,6 +157,11 @@ public class WoodFrameManager : MonoBehaviour
             g.SetActive(false);
         }
         frameTypeList[(int)frameType].SetActive(true);
+
+        if(type == FrameType.Reine)
+        {
+            hasQueen = true;
+        }
     }
 
 }

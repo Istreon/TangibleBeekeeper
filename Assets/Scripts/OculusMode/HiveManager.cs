@@ -26,6 +26,7 @@ public class HiveManager : MonoBehaviour
     void Start()
     {
         System.Random rand = new System.Random();
+        List<int> closedPositions = new List<int>();
         hiveSpotDict = new Dictionary<Vector3, GameObject>();
         for(int i = 0; i < 10; i++)
         {
@@ -46,9 +47,12 @@ public class HiveManager : MonoBehaviour
                 else if(i == 2 || i == 5)
                     frameManager.SetFrameType(WoodFrameManager.FrameType.CouvainOuvert);
                 else
+                {
                     frameManager.SetFrameType(WoodFrameManager.FrameType.CouvainFerme);
+                    closedPositions.Add(i);
+                }
             }
-            else if(hiveState == HiveState.Divided)
+            /*else if(hiveState == HiveState.Divided)
             {
                 if(i%2 == 0)
                 {
@@ -63,7 +67,7 @@ public class HiveManager : MonoBehaviour
                 {
                     hiveSpotDict.Add(pos, null);
                 }
-            }
+            }*/
             else
             {
                 hiveSpotDict.Add(pos, null);
@@ -72,11 +76,11 @@ public class HiveManager : MonoBehaviour
 
         if(hiveState == HiveState.Full)
         {
-            int frameIndex = rand.Next(hiveSpotDict.Values.Count);
+            int queenIndex = closedPositions[rand.Next(closedPositions.Count)];
             List<GameObject> frames = hiveSpotDict.Values.ToList();
             WoodFrameManager frameManager;
-            frames[frameIndex].TryGetComponent<WoodFrameManager>(out frameManager);
-            frameManager.SetQueen();
+            frames[queenIndex].TryGetComponent<WoodFrameManager>(out frameManager);
+            frameManager.SetFrameType(WoodFrameManager.FrameType.Reine);
             hasQueen = true;
         }
     }
@@ -84,7 +88,7 @@ public class HiveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckFrames();
+        //CheckFrames();
         
         foreach (GameObject frame in hiveSpotDict.Values)
         {
