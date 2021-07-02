@@ -1248,6 +1248,7 @@ MonoBehaviour:
   showHandle: 0
   unselected: {fileID: 0}
   selected: {fileID: 0}
+  isHovered: 0
 --- !u!54 &883431676
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1820,6 +1821,7 @@ MonoBehaviour:
   showHandle: 0
   unselected: {fileID: 0}
   selected: {fileID: 0}
+  isHovered: 0
 --- !u!54 &1228761666
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2109,6 +2111,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VR_Rig
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571504626176877459, guid: b1992d64206b48d489484694eb2a51c7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1571504626213741783, guid: b1992d64206b48d489484694eb2a51c7,
         type: 3}

@@ -107,6 +107,7 @@ public class WoodFrameManager : MonoBehaviour
         {
             gameObject.transform.SetParent(newParent.gameObject.transform);
             newParent.SettleFrame(gameObject, newHiveSpot);
+            newParent.HideSlot(newHiveSpot);
         }
         gameObject.transform.localPosition = newHiveSpot;
         gameObject.transform.localEulerAngles = Vector3.zero;

@@ -16,6 +16,8 @@ public class HiveManager : MonoBehaviour
     public HiveState hiveState;
     private Dictionary<Vector3,GameObject> hiveSpotDict;
     public GameObject frameToInstantiate;
+    private Dictionary<Vector3, GameObject> slotsDict;
+    public GameObject slotToInstantiate;
     public GameObject roof;
     public Transform roofReferencePoint;
 
@@ -28,16 +30,27 @@ public class HiveManager : MonoBehaviour
         System.Random rand = new System.Random();
         List<int> closedPositions = new List<int>();
         hiveSpotDict = new Dictionary<Vector3, GameObject>();
+        slotsDict = new Dictionary<Vector3, GameObject>();
         for(int i = 0; i < 10; i++)
         {
             Vector3 pos = new Vector3( 0.0f, 0.3025f, (float) (-0.1715 + i*0.038) );
+            //Instantiate the slot to guide the frame when put in the hive
+            GameObject newSlot = Instantiate(slotToInstantiate, transform);
+            newSlot.transform.parent = gameObject.transform;
+            newSlot.transform.localPosition = pos;
+            newSlot.transform.localEulerAngles = Vector3.zero;
+            newSlot.SetActive(false);
+            slotsDict.Add(pos, newSlot);
+
             if(hiveState == HiveState.Full)
             {
+                //Instantiate the interactable GameObject
                 GameObject newFrame = Instantiate(frameToInstantiate, transform);
                 newFrame.transform.parent = gameObject.transform;
                 newFrame.transform.localPosition = pos;
                 newFrame.transform.localEulerAngles = Vector3.zero;
                 hiveSpotDict.Add(pos, newFrame);
+                
                 nbOfFrames += 1;
                 WoodFrameManager frameManager = newFrame.GetComponent<WoodFrameManager>();
                 if(i == 0 || i == 9)
@@ -88,7 +101,7 @@ public class HiveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //CheckFrames();
+        CheckFrames();
         
         foreach (GameObject frame in hiveSpotDict.Values)
         {
@@ -136,6 +149,7 @@ public class HiveManager : MonoBehaviour
                         dist = distToKey;
                     }
                 }
+                slotsDict[closestSpot].SetActive(true);
                 frameManager.SetHiveSpot(closestSpot, this);
                 Destroy(empty);
             }
@@ -157,6 +171,7 @@ public class HiveManager : MonoBehaviour
                 if(hiveSpotDict[key] == other.gameObject)
                 {
                     hiveSpotDict[key] = null;
+                    slotsDict[key].SetActive(false);
                     break;
                 }
             }
@@ -170,6 +185,11 @@ public class HiveManager : MonoBehaviour
     public void SettleFrame(GameObject frame, Vector3 spot)
     {
         hiveSpotDict[spot] = frame;
+    }
+
+    public void HideSlot(Vector3 spot)
+    {
+        slotsDict[spot].SetActive(false);
     }
 
     public bool IsDivided()
@@ -186,16 +206,20 @@ public class HiveManager : MonoBehaviour
     {
         nbOfFrames = 0;
         hasQueen = false;
-        foreach (GameObject frame in hiveSpotDict.Values)
+        foreach (Vector3 key in hiveSpotDict.Keys)
         {
-            if(frame != null)
+            if(hiveSpotDict[key] != null)
             {
                 nbOfFrames += 1;
                 WoodFrameManager frameManager;
-                if(frame.TryGetComponent<WoodFrameManager>(out frameManager))
+                if(hiveSpotDict[key].TryGetComponent<WoodFrameManager>(out frameManager))
                 {
                     hasQueen = frameManager.HasQueen() | hasQueen;
                 }
+            }
+            else
+            {
+                HideSlot(key);
             }
         }
         if(nbOfFrames < 5)
