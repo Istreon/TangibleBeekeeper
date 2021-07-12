@@ -8,8 +8,6 @@ public class AboveHiveDetection : MonoBehaviour
     //0.75 m
 
     [SerializeField]
-    private int id=-1;
-    [SerializeField]
     private GameObject[] hiveOutline;
 
     [SerializeField]
@@ -17,9 +15,6 @@ public class AboveHiveDetection : MonoBehaviour
 
     private int lastNbOfIncludedPoints = 0;
 
-    public void setId(int newID){
-        id=newID;
-    }
 
   
     // Update is called once per frame
@@ -33,18 +28,18 @@ public class AboveHiveDetection : MonoBehaviour
             switch (nb)
             {
                 case 0:
-                    Debug.Log("Frame : "+id+" is not above the hive");
+                    Debug.Log("Roof is not above the hive");
                     break;
 
                 default:
-                    Debug.Log("Frame : " + id + ". Only nb : " + nb + " points are well positioned .... dist = "+ dist);
+                    Debug.Log("Roof. Only nb : " + nb + " points are well positioned .... dist = "+ dist);
                     break;
             }
         }
        
     }
 
-    public bool objectHideInsideOfTheHive()
+    public bool objectHidesInsideOfTheHive()
     {
         bool result = false;
 

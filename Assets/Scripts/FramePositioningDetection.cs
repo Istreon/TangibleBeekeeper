@@ -25,19 +25,35 @@ public class FramePositioningDetection : MonoBehaviour
 
     private bool[] wellPositionedAt = { false, false, false };
 
+    private int distPrecision = 3;
+
+    private float actualDist = 0.0f;
+    private float actualStandardDeviation = 0.0f;
+
+
+
+
+
+
+
     private bool tidy = false; //true if honeycomb his well stored in the hive
 
-    private float lastAverageDist = 0;
-
-    private int distPrecision=2;
-
     private bool tidyButIncorrect = false; //Used to stop message spam
+
+
 
  
     void FixedUpdate()
     {
         isStillTidy();
 
+
+
+        //Reset values 
+        for (int i = 0; i < wellPositionedAt.Length; i++)
+        {
+            wellPositionedAt[i] = false;
+        }
     }
 
 
@@ -46,31 +62,41 @@ public class FramePositioningDetection : MonoBehaviour
         id = newID;
     }
 
+    public float getActualDist()
+    {
+        return actualDist;
+    }
+
+    public float getActualStandardDeviation()
+    {
+        return actualStandardDeviation;
+    }
+
+    public bool isInTheHive()
+    {
+        bool res = true;
+        //Check if the wood frame touches all detection areas
+        foreach (bool b in wellPositionedAt)
+        {
+            if (!b) res = false;
+
+        }
+        return res;
+    }
+
     /*
      * Check if the object is still tidy in a storage area of the hive, by calculate distance between them
      * if not, pass "tidy" attribut to false
      */
     private void isStillTidy()
     {
-        bool res = true;
-        //Check if the wood frame touches all detection areas
-        foreach(bool b in wellPositionedAt)
-        {
-            if (!b) res = false;
-
-        }
-
-        //Reset values
-        for(int i=0;i<wellPositionedAt.Length;i++)
-        {
-            wellPositionedAt[i] = false;
-        }
-
 
         //If the wood frame touches all detection areas, now check if it well positionned
         float standardDeviation=0;
         float averageDist=0;
-        if(res)
+
+        bool res = isInTheHive();
+        if (res)
         {
 
             //Calculate 3 distances between reference points on frame and reference points in hive
@@ -83,12 +109,13 @@ public class FramePositioningDetection : MonoBehaviour
             distUp2 = Mathf.Min(distUp2, Vector3.Distance(framePositionReferenceInHive[1].transform.position, framePositionReference[1].transform.position));
 
             //Calculate standard deviation and average dist
-            averageDist = (distDown + distUp1 + distUp2) / 2;
+            averageDist = (distDown + distUp1 + distUp2) / 3;
             standardDeviation = Mathf.Max(Mathf.Max(distDown, distUp1), distUp2) - Mathf.Min(Mathf.Min(distDown, distUp1), distUp2);
             averageDist = truncate(averageDist, distPrecision);
-           // if (averageDist != lastAverageDist ) Debug.Log("Distance : " + averageDist);
-            lastAverageDist=averageDist;
 
+            //Save actual values in a var
+            actualDist = averageDist;
+            actualStandardDeviation= standardDeviation;
         }
 
         if (tidy && !res)
@@ -123,9 +150,8 @@ public class FramePositioningDetection : MonoBehaviour
      **/
     private float truncate(float val, int nbAfterTheDecimalPoint)
     {
-        float res = val;
         float tenPow= Mathf.Pow(10f, (float) nbAfterTheDecimalPoint);
-        res=Mathf.Floor(val * tenPow) / tenPow;
+        float res=Mathf.Floor(val * tenPow) / tenPow;
         return res;
     }
    
