@@ -20,6 +20,30 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SaveDataVirtual",
+                    "type": "Button",
+                    "id": "aa8cbf99-ee00-4391-8248-93950700073a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SaveDataWithoutWeight",
+                    "type": "Button",
+                    "id": "c881b602-6ebb-40f7-9764-4ec87c622e88",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SaveDataWeight",
+                    "type": "Button",
+                    "id": "30acf90f-5f5f-4643-9760-c4f8bc965462",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -42,6 +66,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9b2633b-9473-4340-9ad2-24d865baeb97",
+                    "path": "<Keyboard>/#(K)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SaveDataVirtual",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b504b38c-ab1b-4e0b-bacf-2f9eee41b857",
+                    "path": "<Keyboard>/#(L)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SaveDataWithoutWeight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd2f8daf-91fd-41f1-b61b-d1d113c06d5f",
+                    "path": "<Keyboard>/#(M)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SaveDataWeight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
