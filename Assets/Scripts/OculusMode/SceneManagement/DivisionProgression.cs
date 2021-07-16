@@ -88,6 +88,7 @@ public class DivisionProgression : SceneProgression
     {
         base.SkipInScene();
         sceneIndex = displayText.Count - 1;
+        textBox.SetActive(false);
     }
 
     public override void SkipOnLoad()

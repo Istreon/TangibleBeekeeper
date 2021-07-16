@@ -76,7 +76,7 @@ public class SceneProgression : MonoBehaviour
     protected void CheckIfNext()
     {
         bool aPressed;
-        Debug.Log("Entered CheckIfNext()");
+        //Debug.Log("Entered CheckIfNext()");
         if(rightDevice.TryGetFeatureValue(CommonUsages.primaryButton, out aPressed) && aPressed)
         {
             if(!btnALastState)
@@ -84,15 +84,15 @@ public class SceneProgression : MonoBehaviour
                 pressedTime = Time.realtimeSinceStartup;
             }
             btnALastState = true;
-            Debug.Log("\'A\' pressed");
+            //Debug.Log("\'A\' pressed");
         }
         else if (btnALastState)
         {
             btnALastState = false;
             CanContinue();
-            Debug.Log("\'A\' released");
+            //Debug.Log("\'A\' released");
         }
-        if(aPressed && Time.realtimeSinceStartup - pressedTime > 3.0f)
+        if(aPressed && Time.realtimeSinceStartup - pressedTime > 2.0f)
         {
             btnALastState = false;
             SkipInScene();
@@ -101,7 +101,7 @@ public class SceneProgression : MonoBehaviour
 
     protected void CheckIfPrecedent()
     {
-        Debug.Log("Entered CheckIfNext()");
+        //Debug.Log("Entered CheckIfPrecedent()");
         if(buildIndex > 0)
         {
             bool xPressed;
@@ -112,12 +112,12 @@ public class SceneProgression : MonoBehaviour
                     pressedTime = Time.realtimeSinceStartup;
                 }
                 btnXLastState  =true;
-                Debug.Log("\'X\' pressed");
+                //Debug.Log("\'X\' pressed");
             }
             else if(btnXLastState)
             {
                 btnXLastState = false;
-                Debug.Log("\'X\' released");
+                //Debug.Log("\'X\' released");
                 if(isWaiting && !isLoadingScene)
                 {
                     ReturnToGame();
@@ -222,5 +222,22 @@ public class SceneProgression : MonoBehaviour
             isLoadingScene = true;
             loadingScreen.StartLoading(sceneToLoad, skipOnLoad);
         }
+    }
+
+    public void RestartScene()
+    {
+        foreach (AudioSource audio in ambientSound)
+        {
+            audio.Stop();
+        }
+        blackBox.EnableBlackBoxMode();
+        isLoadingScene = true;
+        loadingScreen.StartLoading(buildIndex, true);
+    }
+
+    public void ReplayTuto()
+    {
+        sceneIndex = 0;
+        canContinue = true;
     }
 }

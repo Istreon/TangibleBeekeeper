@@ -19,6 +19,7 @@ public class BeesData : MonoBehaviour
     public TMPro.TextMeshProUGUI butineuses;
     public List<Sprite> images;
     public Image graphImage;
+    public Slider slider2D;
     
 
     //Lists to store data and instantiate the graph
@@ -129,6 +130,7 @@ public class BeesData : MonoBehaviour
 
 
         InitializeSlider(timeSlider);
+        slider2D.value = 0.0f;
         
     }
 
@@ -141,17 +143,17 @@ public class BeesData : MonoBehaviour
         {
             //Debug.Log("Entered if(joyActivated) condition");
             float deltaT = Time.realtimeSinceStartup - activationTime;
-            if( deltaT <= 3.0f && Time.realtimeSinceStartup - joyTime >= 0.67f)
+            /*if( deltaT <= 3.0f && Time.realtimeSinceStartup - joyTime >= 0.67f)
             {
                 //Debug.Log("Time update at slow pace");
                 UpdateTime(joyValue);
-            }
-            if(deltaT > 3.0f && deltaT <= 6.0f && Time.realtimeSinceStartup - joyTime >= 0.33f)
+            }*/
+            if(/*deltaT > 3.0f &&*/ deltaT <= 3.0f && Time.realtimeSinceStartup - joyTime >= 0.33f)
             {
                 //Debug.Log("Time update at medium pace");
                 UpdateTime(joyValue);
             }
-            if(deltaT > 6.0f)
+            if(deltaT > 3.0f)
             {
                 //Debug.Log("Time update at fast pace");
                 UpdateTime(joyValue);
@@ -160,6 +162,7 @@ public class BeesData : MonoBehaviour
             
             
         timeSlider.value = turnIndex;
+        slider2D.value = GetTurnDay(timeScale[turnIndex]);
         grapherRetriever.maxValues = beeMax[turnIndex];
         instant.text = "T0 + " + GetTurnDay(timeScale[turnIndex]);
         nourrices.text = "Nourrices : " + beePopulation[turnIndex][0];

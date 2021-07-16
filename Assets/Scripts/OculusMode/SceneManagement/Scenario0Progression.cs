@@ -37,6 +37,7 @@ public class Scenario0Progression : SceneProgression
         {
             sceneIndex = displayText.Count;
         }
+
     }
 
     // Update is called once per frame
@@ -88,6 +89,7 @@ public class Scenario0Progression : SceneProgression
     {
         base.SkipInScene();
         sceneIndex = displayText.Count - 1;
+        textBox.SetActive(false);
     }
 
     public override void SkipOnLoad()

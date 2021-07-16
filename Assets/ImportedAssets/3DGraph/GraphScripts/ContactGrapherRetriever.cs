@@ -24,6 +24,9 @@ public class ContactGrapherRetriever : MonoBehaviour
 
     private Dictionary<int, int> idToPointID = new Dictionary<int, int>();
 
+    private Color nourColor = new Color(0.035f, 0.416f, 0.6778f, 1.0f);
+    private Color butColor = new Color(1.0f, 0.443f, 0.0f, 1.0f);
+
     private void Start()
     {
         /*if(zLogarithmicScale)
@@ -63,7 +66,7 @@ public class ContactGrapherRetriever : MonoBehaviour
             {                
                 Vector3 point = transformPoint(new Vector3(b.realAge, b.physioAge, b.exchange));
                 targets.Add(point);
-                colors.Add(b.physioAge > 0.5f ? Color.yellow : Color.red); //On change la couleur du point selon l'age physio
+                colors.Add(b.physioAge > 0.5f ? butColor : nourColor); //On change la couleur du point selon l'age physio
                 //Debug.Log(b.physioAge > 0.5f ? Color.yellow : Color.red);
 
                 int pointID;

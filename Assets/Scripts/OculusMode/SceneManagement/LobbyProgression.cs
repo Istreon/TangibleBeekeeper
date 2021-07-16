@@ -9,6 +9,7 @@ public class LobbyProgression : SceneProgression
     {
         base.Start();
         isWaiting = true;
+
     }
 
     // Update is called once per frame

@@ -13,6 +13,12 @@ public class HandleManager : MonoBehaviour
 
     [HideInInspector]
     public bool isHovered;
+
+    public Transform parentTransform;
+    private Transform originTransform;
+    private Vector3 posDiff;
+    private Vector3 rotDiff;
+    private GrabInteractor grabManager;
     
     // Start is called before the first frame update
     void Start()
@@ -26,7 +32,13 @@ public class HandleManager : MonoBehaviour
             objectRend = gameObject.GetComponent<Renderer>();
             objectRend.material = unselected;
         }
+
+        originTransform = this.gameObject.transform;
         
+        posDiff = parentTransform.position - originTransform.position;
+        //rotDiff = parentTransform.eulerAngles - originTransform.eulerAngles;
+
+        grabManager = parentTransform.gameObject.GetComponent<GrabInteractor>();
     }
 
     // Update is called once per frame
@@ -56,6 +68,11 @@ public class HandleManager : MonoBehaviour
     private void disableConstraints()
     {
         handleBody.constraints = RigidbodyConstraints.None;
+        if(showHandle && !grabManager.firstGrab && !grabManager.secondGrab)
+        {
+            this.gameObject.transform.eulerAngles = parentTransform.eulerAngles;
+            this.gameObject.transform.position = parentTransform.position + posDiff;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

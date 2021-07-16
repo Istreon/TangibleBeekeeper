@@ -24,6 +24,7 @@ public class BlackBoxMode : MonoBehaviour
     private Dictionary<XRBaseInteractor, bool> interactorsState;
     private Dictionary<GameObject, bool> objectsState;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +53,7 @@ public class BlackBoxMode : MonoBehaviour
         transparentBox.SetActive(false);
         menu.SetActive(false);
         tutoPanel.SetActive(false);
+
     }
 
     // Update is called once per frame

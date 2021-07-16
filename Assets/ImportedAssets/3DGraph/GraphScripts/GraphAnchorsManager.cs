@@ -33,9 +33,10 @@ public class GraphAnchorsManager : MonoBehaviour
 
     private Vector3 posAtStart;
 
-    private MainController controller;
-    private Transform attachPoint;
+    /*private XRBaseInteractor grabbingHand;
+    public GameObject attachPoint;
     private float attachTime;
+    public HingeJoint hingeJoint;*/
     private bool isHandRotating = false;
 
     void Start()
@@ -46,7 +47,7 @@ public class GraphAnchorsManager : MonoBehaviour
         GetDevice();
 
         isHandRotating = false;
-        controller = null;
+        //grabbingHand = null;
 
     }
 
@@ -60,28 +61,35 @@ public class GraphAnchorsManager : MonoBehaviour
              keyPadPressed = GetJoystickPosition();
             RotateGraph();
         }
-        /*else
+        /*else if(isHandRotating && !moving)
         {  
-            if(Time.realtimeSinceStartup - attachTime > 0.5f)
+            if(Time.realtimeSinceStartup - attachTime > 1.0f)
             {
-                float xDist = controller.transform.position.x - attachPoint.position.x;
-                float yDist = controller.transform.position.y - attachPoint.position.y;
-                float zRot = controller.transform.eulerAngles.z - attachPoint.eulerAngles.z;
-                attachPoint = controller.transform;
+                float xDist = grabbingHand.gameObject.transform.position.x - attachPoint.transform.position.x;
+                float yDist = grabbingHand.gameObject.transform.position.y - attachPoint.transform.position.y;
+                float zRot = grabbingHand.gameObject.transform.eulerAngles.z - attachPoint.transform.eulerAngles.z;
+                //attachPoint = grabbingHand.transform;
+                Debug.Log("Entered (time > 0.5s) with : xDist = " + xDist +", yDist = " + yDist + " & zRot = " + zRot);
                 if(xDist > yDist && xDist > zRot)
                 {
                     Debug.Log("Rotating around the Y AXIS");
-                    gameObject.transform.RotateAround(gameObject.transform.position, Vector3.up, xDist);
+                    hingeJoint.axis = Vector3.down;
+                    moving = true;
+                    //gameObject.transform.RotateAround(gameObject.transform.position, Vector3.up, xDist);
                 }
                 else if(yDist > xDist && yDist > zRot)
                 {
                     Debug.Log("Rotating around the X AXIS");
-                    gameObject.transform.RotateAround(gameObject.transform.position, Vector3.right, yDist);
+                    //gameObject.transform.RotateAround(gameObject.transform.position, Vector3.right, yDist);
+                    hingeJoint.axis = Vector3.right;
+                    moving = true;
                 }
                 else if(zRot > xDist && zRot > yDist)
                 {
                     Debug.Log("Rotating around the Z AXIS");
-                    gameObject.transform.RotateAround(gameObject.transform.position, Vector3.forward, zRot);
+                    //gameObject.transform.RotateAround(gameObject.transform.position, Vector3.forward, zRot);
+                    hingeJoint.axis = Vector3.forward;
+                    moving = true;
                 }
             }
         }*/
@@ -212,40 +220,25 @@ public class GraphAnchorsManager : MonoBehaviour
         }
     }
 
-    public void CheckIfGrabbed()
+    /*public void SetAttach(XRBaseInteractor interactor)
     {
-        Debug.Log("Entered CheckIfGrabbed()");
-        if(controller != null)
-        {
-            if(controller.inputDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue) && gripValue > 0.1f)
-            {
-                SetAttach();
-            }
-            else
-            {
-                ClearAttach();
-            }
-        }
+        grabbingHand = interactor;
+        attachPoint.transform.position = grabbingHand.gameObject.transform.position;
+        attachPoint.transform.eulerAngles = grabbingHand.gameObject.transform.eulerAngles;
+        attachTime = Time.realtimeSinceStartup;
+        //isHandRotating = true;
+        Debug.Log("GraphAnchorsManager.SetAttach()\nwith interactor " + interactor.name 
+            + " at position (" + attachPoint.transform.position.x + " ; " + attachPoint.transform.position.y + " ; " + attachPoint.transform.position.z +")");
     }
 
-    public void SetAttach()
+    public void ClearAttach(XRBaseInteractor interactor)
     {
-        if(!isHandRotating)
+        if(interactor == grabbingHand)
         {
-            Debug.Log("GraphAnchorManager.interactor SET");
-            attachPoint = controller.transform;
-            attachTime = Time.realtimeSinceStartup;
-            isHandRotating = true;
+            grabbingHand = null;
+            //isHandRotating = false;
+            //moving = false;
         }
-    }
+    }*/
 
-    public void ClearAttach()
-    {
-        if(isHandRotating)
-        {
-            Debug.Log("GraphAnchorManager.interactor CLEARED");
-            isHandRotating = false;
-            controller = null;
-        }
-    }
 }
