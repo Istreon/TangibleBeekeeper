@@ -11,9 +11,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/StartMenu.unity
     guid: 53058e806491904498ef5107d6801086
-  - enabled: 0
-    path: Assets/Scenes/BeeHiveSimulation.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/HololensClient.unity
     guid: f36038644e493b34298d9140e9c23fe6
