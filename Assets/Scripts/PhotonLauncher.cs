@@ -1,6 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 public class PhotonLauncher : MonoBehaviourPunCallbacks
 {
@@ -9,6 +10,12 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
     [Tooltip("Define if this scene is a client or a master. A master will create a room, but a client will only try to join it")]
     [SerializeField]
     private bool isClient=true;
+
+
+    [Tooltip("UI text representing the message that user will see to be aware of the state of the connection with the server.")]
+    [SerializeField]
+    private Text connectionStateLabel;
+ 
     #endregion
 
 
@@ -39,6 +46,9 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
         //But we don't want to play in the same room, then we don't do it (make it false)
         PhotonNetwork.AutomaticallySyncScene = false;
 
+
+        
+
     }
 
 
@@ -47,7 +57,14 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
     /// </summary>
     void Start()
     {
+        connectionStateLabel.text = "Connecting...";
+        connectionStateLabel.color = Color.yellow;
         Connect();
+    }
+
+    private void FixedUpdate()
+    {
+        if (PhotonNetwork.IsMasterClient) PhotonNetwork.Disconnect();
     }
 
 
@@ -96,7 +113,10 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
 
     public override void OnDisconnected(DisconnectCause cause)
     {
+        connectionStateLabel.text = "Disconnected";
+        connectionStateLabel.color = Color.red;
         Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
+
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
@@ -118,6 +138,10 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
+        connectionStateLabel.text = "Connected!";
+        connectionStateLabel.color = Color.green;
+
+        
     }
 
     #endregion
