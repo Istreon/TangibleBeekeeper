@@ -5140,6 +5140,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 726893506}
+    - target: {fileID: 1571504627714690055, guid: b1992d64206b48d489484694eb2a51c7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: DivisionScene
+      objectReference: {fileID: 0}
     - target: {fileID: 2694275181262510753, guid: b1992d64206b48d489484694eb2a51c7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

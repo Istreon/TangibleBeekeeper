@@ -171,6 +171,26 @@ public class WoodFrameManager : MonoBehaviour
         {
             hasQueen = true;
         }
+
+        if(frameType == FrameType.Miel)
+            SetFrameMass(Random.Range(3.4f, 4.0f));
+        else if(frameType == FrameType.Pollen)
+            SetFrameMass(Random.Range(1.7f, 2.1f));
+        else if(frameType == FrameType.Gaufre)
+            SetFrameMass(0.5f);
+        else
+            SetFrameMass(Random.Range(2.5f, 3.2f));
+    }
+
+    public void SetFrameMass(float mass)
+    {
+        Rigidbody rigidbody = this.gameObject.GetComponent<Rigidbody>();
+        rigidbody.mass = mass;
+        JointManager jointManager;
+        if(this.gameObject.TryGetComponent<JointManager>(out jointManager))
+        {
+            jointManager.InitializeJoints();
+        }
     }
 
 }

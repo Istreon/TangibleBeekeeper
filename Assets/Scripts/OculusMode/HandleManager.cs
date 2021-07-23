@@ -8,7 +8,8 @@ public class HandleManager : MonoBehaviour
     private Rigidbody handleBody = null;
     private Renderer objectRend;
     public bool showHandle = false;
-    public Material unselected;
+    public Material unhovered;
+    public Material hovered;
     public Material selected;
 
     [HideInInspector]
@@ -19,6 +20,9 @@ public class HandleManager : MonoBehaviour
     private Vector3 posDiff;
     private Vector3 rotDiff;
     private GrabInteractor grabManager;
+    private InteractiveGrabber interactiveGrabber;
+    private Material previousMaterial;
+    private bool isSelected;
     
     // Start is called before the first frame update
     void Start()
@@ -30,12 +34,15 @@ public class HandleManager : MonoBehaviour
         if(showHandle)
         {
             objectRend = gameObject.GetComponent<Renderer>();
-            objectRend.material = unselected;
+            objectRend.material = unhovered;
+            interactiveGrabber = this.gameObject.GetComponent<InteractiveGrabber>();
+            interactiveGrabber.onSelectEntered.AddListener(delegate{SetSelectedMaterial();});
+            interactiveGrabber.onSelectExited.AddListener(delegate{SetPreviousMaterial();});
         }
 
         originTransform = this.gameObject.transform;
         
-        posDiff = parentTransform.position - originTransform.position;
+        posDiff = originTransform.position - parentTransform.position;
         //rotDiff = parentTransform.eulerAngles - originTransform.eulerAngles;
 
         grabManager = parentTransform.gameObject.GetComponent<GrabInteractor>();
@@ -44,6 +51,10 @@ public class HandleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!isHovered && !isSelected)
+        {
+            objectRend.material = unhovered;
+        }
         
         if(this.transform.parent!=null)
         {
@@ -62,7 +73,6 @@ public class HandleManager : MonoBehaviour
     {
         handleBody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotationZ;
 
-
     }
 
     private void disableConstraints()
@@ -70,34 +80,62 @@ public class HandleManager : MonoBehaviour
         handleBody.constraints = RigidbodyConstraints.None;
         if(showHandle && !grabManager.firstGrab && !grabManager.secondGrab)
         {
-            this.gameObject.transform.eulerAngles = parentTransform.eulerAngles;
+            this.gameObject.transform.rotation = parentTransform.rotation;
             this.gameObject.transform.position = parentTransform.position + posDiff;
+    
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(showHandle)
+        if(showHandle && !isSelected)
         {
             if(other.gameObject.TryGetComponent<HandInteractor>(out HandInteractor interactor))
             {
-                objectRend.material = selected;
+                objectRend.material = hovered;
                 isHovered = true;
             }
         }
         
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if(showHandle)
+        if(showHandle && !isSelected)
         {
             if(other.gameObject.TryGetComponent<HandInteractor>(out HandInteractor interactor))
             {
-                objectRend.material = unselected;
+                objectRend.material = hovered;
+                isHovered = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(showHandle && !isSelected)
+        {
+            if(other.gameObject.TryGetComponent<HandInteractor>(out HandInteractor interactor))
+            {
+                objectRend.material = unhovered;
                 isHovered = false;
             }
         }
+    }
+
+    private void SetSelectedMaterial()
+    {
+        //previousMaterial = objectRend.material;
+        objectRend.material = selected;
+        isSelected = true;
+    }
+
+    private void SetPreviousMaterial()
+    {
+        //objectRend.material = previousMaterial;
+        objectRend.material = unhovered;
+        isHovered = false;
+        isSelected = false;
     }
 
 }

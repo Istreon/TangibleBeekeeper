@@ -347,4 +347,11 @@ public class DivisionManager : MonoBehaviour
         resultPanel.SetActive(true);
         isToDivide = false;
     }
+
+    public void ResetDivision()
+    {
+        resultPanel.SetActive(false);
+        divisionPanel.SetActive(true);
+        isDivided = false;
+    }
 }

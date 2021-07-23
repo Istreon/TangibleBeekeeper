@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2945366119149952805}
   - component: {fileID: 2945366119149952802}
   m_Layer: 9
-  m_Name: FixedFrame
+  m_Name: UnweightedFrame
   m_TagString: Catchable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1299,8 +1299,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showHandle: 1
-  unselected: {fileID: 2100000, guid: 442687ddeae7a304b893c4978f9563e7, type: 2}
-  selected: {fileID: 2100000, guid: a6710544a8954ff4296a9529d18af933, type: 2}
+  unhovered: {fileID: 2100000, guid: 442687ddeae7a304b893c4978f9563e7, type: 2}
+  hovered: {fileID: 2100000, guid: a6710544a8954ff4296a9529d18af933, type: 2}
+  selected: {fileID: 2100000, guid: 59152e7eb055fc940a9bc93138fc671d, type: 2}
   isHovered: 0
   parentTransform: {fileID: 2947800460420344809}
 --- !u!114 &6767005709969858547
@@ -1787,8 +1788,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showHandle: 1
-  unselected: {fileID: 2100000, guid: 442687ddeae7a304b893c4978f9563e7, type: 2}
-  selected: {fileID: 2100000, guid: a6710544a8954ff4296a9529d18af933, type: 2}
+  unhovered: {fileID: 2100000, guid: 442687ddeae7a304b893c4978f9563e7, type: 2}
+  hovered: {fileID: 2100000, guid: a6710544a8954ff4296a9529d18af933, type: 2}
+  selected: {fileID: 2100000, guid: 59152e7eb055fc940a9bc93138fc671d, type: 2}
   isHovered: 0
   parentTransform: {fileID: 2947800460420344809}
 --- !u!114 &7869309969399600660

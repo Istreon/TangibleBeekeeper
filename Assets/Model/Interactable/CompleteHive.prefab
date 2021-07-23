@@ -90,6 +90,7 @@ MonoBehaviour:
   unselected: {fileID: 2100000, guid: 442687ddeae7a304b893c4978f9563e7, type: 2}
   selected: {fileID: 2100000, guid: f6eaf5a7729b1664ca9d7c80660f7e35, type: 2}
   isHovered: 0
+  parentTransform: {fileID: 0}
 --- !u!114 &88255264389834677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +331,7 @@ MonoBehaviour:
   unselected: {fileID: 2100000, guid: 442687ddeae7a304b893c4978f9563e7, type: 2}
   selected: {fileID: 2100000, guid: a6710544a8954ff4296a9529d18af933, type: 2}
   isHovered: 0
+  parentTransform: {fileID: 0}
 --- !u!114 &88255264475837627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,6 +645,7 @@ MonoBehaviour:
   unselected: {fileID: 0}
   selected: {fileID: 0}
   isHovered: 0
+  parentTransform: {fileID: 0}
 --- !u!114 &88255264634544411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,6 +896,7 @@ MonoBehaviour:
   unselected: {fileID: 2100000, guid: 442687ddeae7a304b893c4978f9563e7, type: 2}
   selected: {fileID: 2100000, guid: a6710544a8954ff4296a9529d18af933, type: 2}
   isHovered: 0
+  parentTransform: {fileID: 0}
 --- !u!114 &88255264794379371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1817,6 +1821,7 @@ MonoBehaviour:
   unselected: {fileID: 0}
   selected: {fileID: 0}
   isHovered: 0
+  parentTransform: {fileID: 0}
 --- !u!114 &88255266043230608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2127,6 +2132,7 @@ MonoBehaviour:
   unselected: {fileID: 2100000, guid: 442687ddeae7a304b893c4978f9563e7, type: 2}
   selected: {fileID: 2100000, guid: a6710544a8954ff4296a9529d18af933, type: 2}
   isHovered: 0
+  parentTransform: {fileID: 0}
 --- !u!114 &88255266256802708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3020,8 +3026,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   divisionManager: {fileID: 5256348748530744089}
   hiveState: 2
-  frameToInstantiate: {fileID: 2945366119149952803, guid: 9be1dd34d14148b4e94e040e2935ce35,
+  unweightedFrame: {fileID: 2945366119149952803, guid: da56100769a3c9647944cb734de4c9fb,
     type: 3}
+  weightedFrame: {fileID: 2945366119149952803, guid: 9be1dd34d14148b4e94e040e2935ce35,
+    type: 3}
+  useFrameWeight: 0
   slotToInstantiate: {fileID: 8536488613680174815, guid: faedf5a7605c6e848b93bd4d1da8830a,
     type: 3}
   roof: {fileID: 1006803435674778098}

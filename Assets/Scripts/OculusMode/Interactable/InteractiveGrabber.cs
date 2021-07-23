@@ -51,4 +51,9 @@ public class InteractiveGrabber : XRGrabInteractable
         interactorRotation = Quaternion.identity;
 
     }
+
+    public Vector3 GetInteractorPosition()
+    {
+        return interactorPosition;
+    }
 }

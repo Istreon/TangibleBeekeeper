@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using UnityEngine.UI;
 
 public class HiveManager : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class HiveManager : MonoBehaviour
     }
     public HiveState hiveState;
     private Dictionary<Vector3,GameObject> hiveSpotDict;
-    public GameObject frameToInstantiate;
+    public GameObject unweightedFrame;
+    public GameObject weightedFrame;
+    public bool useFrameWeight;
     private Dictionary<Vector3, GameObject> slotsDict;
     public GameObject slotToInstantiate;
     public GameObject roof;
@@ -32,6 +35,12 @@ public class HiveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject frameToInstantiate;
+        if(useFrameWeight)
+            frameToInstantiate = weightedFrame;
+        else
+            frameToInstantiate = unweightedFrame;
+        Debug.Log("useFrameWeight = " + useFrameWeight + ", so the frame to instantiate is " + frameToInstantiate.name);
         divisionManager.SetHiveManager(this);
         System.Random rand = new System.Random();
         List<int> closedPositions = new List<int>();
