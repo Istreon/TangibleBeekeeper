@@ -42,6 +42,11 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
     }
 
 
+    private void FixedUpdate()
+    {
+        Debug.Log(PhotonNetwork.CountOfPlayers);
+    }
+
     /// <summary>
     /// MonoBehaviour method called on GameObject by Unity during initialization phase.
     /// </summary>
