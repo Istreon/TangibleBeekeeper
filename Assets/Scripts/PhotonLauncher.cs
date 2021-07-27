@@ -14,7 +14,7 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
 
     [Tooltip("UI text representing the message that user will see to be aware of the state of the connection with the server.")]
     [SerializeField]
-    private Text connectionStateLabel;
+    private TextMesh connectionStateLabel;
  
     #endregion
 
