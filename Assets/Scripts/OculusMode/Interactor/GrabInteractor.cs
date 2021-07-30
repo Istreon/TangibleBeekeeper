@@ -13,17 +13,33 @@ public class GrabInteractor : MonoBehaviour
     [HideInInspector]
     public bool secondGrab = false;
 
+    public List<Renderer> frameParts;
+    public Material unhoveredFrame;
+    public Material hoveredFrame;
+    private int hovering;
+    private int selecting;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        hovering = 0;
+        selecting = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        foreach (Renderer rend in frameParts)
+        {
+            if(hovering > 0 | selecting > 0)
+            {
+                rend.material = hoveredFrame;
+            }
+            else
+            {
+                rend.material = unhoveredFrame;
+            }
+        }
     }
 
     public void SetInteractor(HandInteractor interactor)
@@ -56,6 +72,34 @@ public class GrabInteractor : MonoBehaviour
             secondInteractor = null;
             secondGrab = false;
         }
+    }
+
+    public void InitializeFrameMaterial()
+    {
+        foreach (Renderer rend in frameParts)
+        {
+            rend.material = unhoveredFrame;
+        }
+    }
+
+    public void HoverFrame()
+    {
+        hovering += 1;
+    }
+
+    public void UnhoverFrame()
+    {
+        hovering -= 1;
+    }
+
+    public void SelectFrame()
+    {
+        selecting += 1;
+    }
+
+    public void UnselectFrame()
+    {
+        selecting -= 1;
     }
 
     public bool IsGrabbed()

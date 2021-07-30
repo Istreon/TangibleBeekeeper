@@ -25,6 +25,8 @@ public class WoodFrameManager : MonoBehaviour
     public List<GameObject> grabPoints;
 
     public List<GameObject> frameTypeList;
+    public Rigidbody frameBody;
+    public JointManager jointManager;
 
     /*private float[] yPos = new float[2] {-0.2665f, -0.0052f};
     private float[] xPos = new float[2] {-0.2008f, 0.2008f};
@@ -186,11 +188,8 @@ public class WoodFrameManager : MonoBehaviour
     {
         Rigidbody rigidbody = this.gameObject.GetComponent<Rigidbody>();
         rigidbody.mass = mass;
-        JointManager jointManager;
-        if(this.gameObject.TryGetComponent<JointManager>(out jointManager))
-        {
-            jointManager.InitializeJoints();
-        }
+        frameBody.mass = mass;
+        jointManager.InitializeJoints();
     }
 
 }

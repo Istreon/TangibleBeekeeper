@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5720508076684939944}
   - component: {fileID: 1604098397888882203}
   m_Layer: 9
-  m_Name: WeightedFrame
+  m_Name: WeightedFrameV1
   m_TagString: Catchable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,6 +113,7 @@ MonoBehaviour:
   - {fileID: 8668455303189277028}
   - {fileID: 5682850514623764208}
   - {fileID: 3929180260094073500}
+  frameBody: {fileID: 2893270404591455569}
   isHovered: 0
 --- !u!114 &5720508076684939944
 MonoBehaviour:
@@ -128,6 +129,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstGrab: 0
   secondGrab: 0
+  frameParts:
+  - {fileID: 2933033211567473219}
+  - {fileID: 2932610927699286559}
+  - {fileID: 2933529302275020843}
+  - {fileID: 2932633670501603275}
+  - {fileID: 2932556407714977831}
+  unhoveredFrame: {fileID: 2100000, guid: 76b8ed3c01803534c9b39304cebdb89c, type: 2}
+  hoveredFrame: {fileID: 2100000, guid: 0018d8e47c7a79f479380ff2c3972212, type: 2}
 --- !u!114 &1604098397888882203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +151,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftJoint: {fileID: 5743351548679700194}
   rightJoint: {fileID: 8111206179256446456}
+  springJoint: {fileID: 0}
+  leftGrabber: {fileID: 6767005709969858547}
+  rightGrabber: {fileID: 7869309969399600660}
 --- !u!1 &2945372793433161635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,9 +1295,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showHandle: 1
-  unhovered: {fileID: 2100000, guid: 442687ddeae7a304b893c4978f9563e7, type: 2}
-  hovered: {fileID: 2100000, guid: a6710544a8954ff4296a9529d18af933, type: 2}
-  selected: {fileID: 2100000, guid: 59152e7eb055fc940a9bc93138fc671d, type: 2}
   isHovered: 0
   parentTransform: {fileID: 2947800460420344809}
 --- !u!114 &6767005709969858547
@@ -1869,9 +1878,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showHandle: 1
-  unhovered: {fileID: 2100000, guid: 442687ddeae7a304b893c4978f9563e7, type: 2}
-  hovered: {fileID: 2100000, guid: a6710544a8954ff4296a9529d18af933, type: 2}
-  selected: {fileID: 2100000, guid: 59152e7eb055fc940a9bc93138fc671d, type: 2}
   isHovered: 0
   parentTransform: {fileID: 2947800460420344809}
 --- !u!114 &7869309969399600660

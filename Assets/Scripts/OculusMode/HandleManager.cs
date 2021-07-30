@@ -8,9 +8,9 @@ public class HandleManager : MonoBehaviour
     private Rigidbody handleBody = null;
     private Renderer objectRend;
     public bool showHandle = false;
-    public Material unhovered;
+    /*public Material unhovered;
     public Material hovered;
-    public Material selected;
+    //public Material selected;*/
 
     [HideInInspector]
     public bool isHovered;
@@ -27,17 +27,20 @@ public class HandleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        grabManager = parentTransform.gameObject.GetComponent<GrabInteractor>();
+
         this.transform.parent = null;
         handleBody = this.GetComponent<Rigidbody>();
         handleBody.isKinematic = false;
 
         if(showHandle)
         {
-            objectRend = gameObject.GetComponent<Renderer>();
-            objectRend.material = unhovered;
-            interactiveGrabber = this.gameObject.GetComponent<InteractiveGrabber>();
-            interactiveGrabber.onSelectEntered.AddListener(delegate{SetSelectedMaterial();});
-            interactiveGrabber.onSelectExited.AddListener(delegate{SetPreviousMaterial();});
+            //objectRend = gameObject.GetComponent<Renderer>();
+            //objectRend.material = unhovered;
+            grabManager.InitializeFrameMaterial();
+            //interactiveGrabber = this.gameObject.GetComponent<InteractiveGrabber>();
+            //interactiveGrabber.onSelectEntered.AddListener(delegate{SetSelectedMaterial();});
+            //interactiveGrabber.onSelectExited.AddListener(delegate{SetPreviousMaterial();});
         }
 
         originTransform = this.gameObject.transform;
@@ -45,16 +48,34 @@ public class HandleManager : MonoBehaviour
         posDiff = originTransform.position - parentTransform.position;
         //rotDiff = parentTransform.eulerAngles - originTransform.eulerAngles;
 
-        grabManager = parentTransform.gameObject.GetComponent<GrabInteractor>();
+        isHovered = false;
+        isSelected = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!isHovered && !isSelected)
+        /*//Debug.Log("isHovered = " + isHovered + " ; isSelected = " + isSelected);
+        if(showHandle)
         {
-            objectRend.material = unhovered;
-        }
+            if(isHovered | grabManager.firstGrab | grabManager.secondGrab)
+            {
+                //Debug.Log("Update.if loops entered");
+                //objectRend.material = unhovered;
+                foreach (Renderer rend in frameParts)
+                {
+                    rend.material = hovered;
+                }
+            }
+            else
+            {
+                foreach (Renderer rend in frameParts)
+                {
+                    rend.material = unhovered;
+                }
+            }
+            
+        }*/
         
         if(this.transform.parent!=null)
         {
@@ -88,12 +109,20 @@ public class HandleManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(showHandle && !isSelected)
+        if(showHandle /*&& !isSelected*/)
         {
             if(other.gameObject.TryGetComponent<HandInteractor>(out HandInteractor interactor))
             {
-                objectRend.material = hovered;
+                grabManager.HoverFrame();
+                /*Debug.Log("OnTriggerEnter with interactor " + other.gameObject.name + " on grabpoint " + this.gameObject.name);
                 isHovered = true;
+                //Debug.Log("All OnTriggerEnter() conditions validated and isHovered = " + isHovered);
+                //objectRend.material = hovered;
+                foreach (Renderer rend in frameParts)
+                {
+                    //Debug.Log("OnTriggerEnter.foreach loop for renderer " + rend.gameObject.name);
+                    rend.material = hovered;
+                }*/
             }
         }
         
@@ -101,41 +130,69 @@ public class HandleManager : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(showHandle && !isSelected)
+        /*if(showHandle && !isSelected)
         {
             if(other.gameObject.TryGetComponent<HandInteractor>(out HandInteractor interactor))
             {
-                objectRend.material = hovered;
                 isHovered = true;
+                //objectRend.material = hovered;
+                foreach (Renderer rend in frameParts)
+                {
+                    rend.material = hovered;
+                }
             }
-        }
+        }*/
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(showHandle && !isSelected)
+        if(showHandle /*&& !isSelected*/)
         {
             if(other.gameObject.TryGetComponent<HandInteractor>(out HandInteractor interactor))
             {
-                objectRend.material = unhovered;
-                isHovered = false;
+                grabManager.UnhoverFrame();
+                /*isHovered = false;
+                //Debug.Log("All OnTriggerExit() conditions validated and isHovered = " + isHovered);
+                //objectRend.material = unhovered;
+                foreach (Renderer rend in frameParts)
+                {
+                    //Debug.Log("OnTriggerExit.foreach loop for renderer " + rend.gameObject.name);
+                    rend.material = unhovered;
+                }*/
             }
         }
     }
 
-    private void SetSelectedMaterial()
+    public void SetSelectedMaterial()
     {
-        //previousMaterial = objectRend.material;
-        objectRend.material = selected;
+        grabManager.SelectFrame();
+        /*//previousMaterial = objectRend.material;
+        //objectRend.material = selected;
+        foreach (Renderer rend in frameParts)
+        {
+            rend.material = hovered;
+        }
         isSelected = true;
+        //Debug.Log("OnSelectEntered() on grabpoint " + this.gameObject.name + " and isSelected = " + isSelected);*/
     }
 
-    private void SetPreviousMaterial()
+    public void SetPreviousMaterial()
     {
-        //objectRend.material = previousMaterial;
-        objectRend.material = unhovered;
-        isHovered = false;
-        isSelected = false;
+        grabManager.UnselectFrame();
+        /*//objectRend.material = previousMaterial;
+        //objectRend.material = unhovered;
+        //if(!grabManager.firstGrab && !grabManager.secondGrab)
+        //{
+            foreach (Renderer rend in frameParts)
+            {
+                rend.material = unhovered;
+            }
+            isHovered = false;
+            isSelected = false;
+        //}*/
+        
+        //Debug.Log("OnSelectExited() on grabpoint " + this.gameObject.name + " and isSelected = " + isSelected);
+        
     }
 
 }
