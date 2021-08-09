@@ -1,14 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class HoneycombVisualSelector : MonoBehaviour
+public class HoneycombVisualSelector : MonoBehaviourPunCallbacks, IPunObservable
 {
     [SerializeField]
     private GameObject [] orderedVisuals;
 
     private int tabSize;
     private int actualPosition = 0;
+
+
+    #region IPunObservable implementation
+
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+
+        if (stream.IsWriting)
+        {
+            // We own this player: send the others our data
+            stream.SendNext(actualPosition);
+        }
+        else
+        {
+            // Network player, receive data
+            this.actualPosition = (int)stream.ReceiveNext();
+        }
+    }
+
+
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,19 +50,28 @@ public class HoneycombVisualSelector : MonoBehaviour
     }
 
 
+    private void FixedUpdate()
+    {
+        UpdateVisual();
+    }
+        
+
     public void NextVisual()
     {
         if(tabSize>0)
         {
             actualPosition = (actualPosition + 1) % tabSize;
-            foreach (GameObject g in orderedVisuals)
-            {
-                if (g != null)
-                    g.SetActive(false);
-            }
-            if (orderedVisuals[actualPosition] != null)
-                orderedVisuals[actualPosition].SetActive(true);
+        }  
+    }
+
+    public void UpdateVisual()
+    {
+        foreach (GameObject g in orderedVisuals)
+        {
+            if (g != null)
+                g.SetActive(false);
         }
-        
+        if (orderedVisuals[actualPosition] != null)
+            orderedVisuals[actualPosition].SetActive(true);
     }
 }

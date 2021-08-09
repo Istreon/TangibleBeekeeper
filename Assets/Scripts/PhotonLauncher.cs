@@ -44,7 +44,7 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
 
     private void FixedUpdate()
     {
-        Debug.Log(PhotonNetwork.CountOfPlayers);
+        //Debug.Log(PhotonNetwork.CountOfPlayers);
     }
 
     /// <summary>
