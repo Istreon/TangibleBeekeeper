@@ -97,7 +97,7 @@ namespace MRTKExtensions.QRCodes
 
         private void SetPosition(object sender, Pose pose)
         {
-            IsTrackingActive = false;
+            IsTrackingActive = false; //Disable tracking
             markerHolder.localScale = Vector3.one * lastMessage.PhysicalSideLength;
             markerDisplay.SetActive(true);
             PositionSet?.Invoke(this, pose);
