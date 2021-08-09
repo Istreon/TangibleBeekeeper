@@ -6,7 +6,7 @@ C'est une simulation de ruche d'abeille en réalité virtuelle (RV), compatible 
 Deux versions utilisant Photon existent offrant un simulation RV et un monitoring AR pour un Hololens 2 (ces deux versions se trouvent respectivement dans les branches : version_Photon_VR et version_Photon_AR).***
 
 ## Mots clés
-Interaction tangible, Réalité virtuelle, Réalité augmentée, Immersion, Tracking, Interface Homme Machine
+Interaction tangible, Réalité virtuelle, Réalité augmentée, Immersion, Tracking, Interface Homme Machine, Unity
 
 
 ## Objectif du projet
@@ -14,6 +14,15 @@ L'objectif de ce projet est d'améliorer les interactions en RV avec une ruche v
 Il n'y a pour le moment pas de colonie d'abeille ayant un comportement réaliste dans la simulation, mais l'environnement est travaillé pour offrir un simulation réaliste, offrant des interactions naturelles avec la ruche.  
 À long terme, une simulation multi-agent d'une colonie d'abeille sera ajouté, et ce projet servira d'interface tangible entre la colonie et l'utilisateur.
 
+## Le contenu du projet
 
+Ce projet est composé de deux scènes Unity :
+- Le menu de démarrage
+- La simulation
 
-![Contribution guidelines for this project](/docs/startMenu.PNG)
+### Le menu de démarrage
+
+![Start menu screenshot](/docs/startMenu.PNG)
+
+Ce menu est composé d'un bouton "Play" permettant de passer à la scène suivante (la simulation) et d'une case à cocher (checkbox) permettant d'activer ou non l'optitrack pour la simulation. Si aucun système Optitrack n'est relié à la simulation (directement à l'ordinateur ou en stream de données en passant par un réseau), alors il faut décocher la case.
+
