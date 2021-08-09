@@ -24,5 +24,5 @@ Ce projet est composé de deux scènes Unity :
 
 ![Start menu screenshot](/docs/startMenu.PNG)
 
-Ce menu est composé d'un bouton "Play" permettant de passer à la scène suivante (la simulation) et d'une case à cocher (checkbox) permettant d'activer ou non l'optitrack pour la simulation. Si aucun système Optitrack n'est relié à la simulation (directement à l'ordinateur ou en stream de données en passant par un réseau), alors il faut décocher la case.
+Ce menu est composé d'un bouton "Play" permettant de passer à la scène suivante (la simulation) et d'une case à cocher (checkbox) permettant d'activer ou non l'optitrack pour la simulation. Si aucun système Optitrack allumé n'est relié à la simulation, alors il faut décocher la case.
 
