@@ -16,4 +16,4 @@ Il n'y a pour le moment pas de colonie d'abeille ayant un comportement réaliste
 
 
 
-![Contribution guidelines for this project](/Assets/Textures/grass.png)
+![Contribution guidelines for this project](/docs/startMenu.PNG)
