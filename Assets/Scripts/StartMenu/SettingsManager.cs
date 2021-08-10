@@ -5,7 +5,8 @@ using UnityEngine;
 public class SettingsManager : MonoBehaviour
 {
 
-    bool optitrackEnabled = true;
+    private bool photonEnabled = true;
+    private bool optitrackEnabled = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +31,15 @@ public class SettingsManager : MonoBehaviour
     public bool IsOptitrackEnabled()
     {
         return optitrackEnabled;
+    }
+
+    public void EnablePhoton(bool value)
+    {
+        photonEnabled = value;
+    }
+
+    public bool IsPhotonEnabled()
+    {
+        return photonEnabled;
     }
 }
