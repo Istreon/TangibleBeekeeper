@@ -40,3 +40,22 @@ La capture d'écran montre différents éléments dans la hiérarchie de cette s
 - **HoneycombVisualManager** : permet de modifier le visuel des cadres, en récupérant un input clavier (touche 'N' actuellement) pour faire passer tous les cadres liés au visuel suivant
 - **CatchDataManager** : permet d'enregistrer dans un fichier la positionnement des cadres dans la ruche en appuyant sur une touche du clavier (touche 'K' 'L' et 'M').
 - **PhotonLauncher** : permet de lancer la connexion au serveur photon, et de créer un salle ou en rejoindre une.
+
+#### XR
+
+![XR gameObject](/docs/go_XR.PNG)
+
+Le gameObject XR contient différents éléments permettant d'utiliser un casque de RV. La structure globale provient du XR rig proposé par Unity.
+
+![XR Rig unity](/docs/go_xr_rig.png)
+
+Dans le but d'utiliser le handTracking du casque Oculus Quest 2, un composant "OVR Manager" est ajouté au gameObject "XR Rig".
+
+![OVR_manager](/docs/OVR_manager_script.PNG)
+
+Ainsi les deux gameObjects "OVRHandPrefabRight" et "OVRHandPrefabLeft" fonctionneront. Ce sont les mains respectivement droite et gauche permettant le handtracking.  
+Le gameObject "OculusQuest2SimpleControllers" représente les manettes Oculus quest2. 
+
+Enfin, si le projet devait être amené à être utilisé avec un autre casque, le gameObject ControllerHandVisual doit être activer pour remplacer "OculusQuest2SimpleControllers" qui est spécifique à l'Oculus Quest 2. Il faut aussi désactiver le script "OVR Manager", et bien évidemment changer les paramètre XR (décoché Oculus et cocher OpenXR)
+
+![XR settings](/docs/XR_settings.PNG)
