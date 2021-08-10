@@ -59,3 +59,11 @@ Le gameObject "OculusQuest2SimpleControllers" représente les manettes Oculus qu
 Enfin, si le projet devait être amené à être utilisé avec un autre casque, le gameObject ControllerHandVisual doit être activer pour remplacer "OculusQuest2SimpleControllers" qui est spécifique à l'Oculus Quest 2. Il faut aussi désactiver le script "OVR Manager", et bien évidemment changer les paramètre XR (décoché Oculus et cocher OpenXR)
 
 ![XR settings](/docs/XR_settings.PNG)
+
+#### Optitrack_mode
+
+![Optitrack mode](/docs/go_optitrack_mode.PNG)
+
+Ce gameObject contient deux gameObjects.
+- "Client - Optitrack" correspond au client recevant les données de tracking Optitrack.
+- -"FrameTrackingSecurity" désactive le tracking optitrack des cadres quand ceux-ci sont dans la ruche et que le toit couvre la ruche. Ainsi, cela évite les pertes de tracking et les bugs visuels.
