@@ -24,7 +24,8 @@ Ce projet est composé de deux scènes Unity :
 
 ![Start menu screenshot](/docs/startMenu.PNG)
 
-Ce menu est composé d'un bouton "Play" permettant de passer à la scène suivante (la simulation) et d'une case à cocher (checkbox) permettant d'activer ou non l'optitrack pour la simulation. Si aucun système Optitrack allumé n'est relié à la simulation, alors il faut décocher la case.
+Ce menu est composé d'un bouton "Play" permettant de passer à la scène suivante (la simulation) et d'une case à cocher (checkbox) permettant d'activer ou non l'optitrack pour la simulation. Si aucun système Optitrack allumé n'est relié à la simulation, alors il faut décocher la case.  
+De la même façon, il y a une case à chocher pour activer ou non la communication réseau avec Photon.
 
 ### La simulation de la ruche
 
