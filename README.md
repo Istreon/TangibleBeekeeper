@@ -3,7 +3,7 @@
 ## Notes importantes
 ***Ce projet est financé par l'IMT Atlantique et réalisé dans le cadre des travaux de recherche de l'équipe INUIT du Lab-STICC.  
 C'est une simulation de ruche d'abeille en réalité virtuelle (RV), compatible avec un casque de type Oculus Quest 2. Il utilise un système de tracking Optitrack ainsi qu'une ruche réelle équipée de marqueurs Optitrack. Il est néanmoins possible d'utiliser la simulation sans, en désactivant l'option sur le menu de démarrage de la simulation.  
-Deux versions utilisant Photon existent offrant une simulation RV et un monitoring AR pour un Hololens 2 (ces deux versions se trouvent respectivement dans les branches : version_Photon_VR et version_Photon_AR).***
+Deux versions utilisant Photon existent offrant une simulation RV et un monitoring AR pour un Hololens 2 (ces deux versions se trouvent respectivement dans les branches : Main et version_Photon_AR).***
 
 ## Mots clés
 Interaction tangible, Réalité virtuelle, Réalité augmentée, Immersion, Tracking, Interface Homme Machine, Unity
