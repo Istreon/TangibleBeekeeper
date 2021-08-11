@@ -66,4 +66,29 @@ Enfin, si le projet devait être amené à être utilisé avec un autre casque, 
 
 Ce gameObject contient deux gameObjects.
 - "Client - Optitrack" correspond au client recevant les données de tracking Optitrack.
-- -"FrameTrackingSecurity" désactive le tracking optitrack des cadres quand ceux-ci sont dans la ruche et que le toit couvre la ruche. Ainsi, cela évite les pertes de tracking et les bugs visuels.
+- "FrameTrackingSecurity" désactive le tracking optitrack des cadres quand ceux-ci sont dans la ruche et que le toit couvre la ruche. Ainsi, cela évite les pertes de tracking qui provoquent les bugs visuels.
+
+#### TrackedObjects
+
+Ce gameObject contient plusieurs gameObjects.
+
+![TrackedObjects](/docs/go_trackedObjects.PNG)
+
+- **Hive_frames** contient les différents cadres de la ruche.
+- **HivePrincipaleBox** correspond à la partie haute de la ruche, pouvant contenir les cadres
+- **rehausse_de_ruche** correspond à la réhausse de la ruche + le socle de la ruche.
+- **HiveRoof** correspond au toit de la ruche.
+- **Smoker** correspond à l'enfumoir.  
+
+Chaque cadre de la ruche :
+- Peut être manipulé avec les manettes de réalité virtuelle grâce au script "OffsetGrab.cs"
+- Est manipulable avec un objet tangible réel traqué grâce au système Optitrack (le script "OptitrackRigidBody.cs" est équipé au cadre)
+- Peut détecter son positionnement dans la ruche grâce au script "FramePositionningDetection.cs" et un gameObject fils nommé "FramePositionReference".
+- Sa position et son orientation son communiquées via le service Photon.
+- Le visuel du contenu du cadre peut changer avec son gameObject fils nommé "miel_visuel" équipé du script "HoneycombVIsualSelector.cs".
+
+![Cadre de ruche](/docs/go_cadre_ruche.PNG)
+
+De la même façon, le toit de la ruche, le corps principal, la réhausse et l'enfumoir peuvent être manipulés avec les manettes de réalité virtuels, avec les objets tangibles réels correspondant et voir leur position et orientation communiquées via photon.
+
+L'enfumoir peut en plus être activé et libérer de la fumée, avec le script "Smoker.cs", en activant la gachette de la manette de RV ou en utilisant l'enfumoir tangible équipé d'une carte nodeMCU ESP8266 et le script "ConnectedSmoker.cs". Le code arduino se trouve dans le code source du projet, dans le dossier "ArduinoSourceCode/". Pour connected l'arduino au WIFI, il faut directement modifier les paramètre dans le code source. Il faut aussi récupérer l'adresse IP de la carte (en passant par l'editeur Arduino et en lisant le port série avec la carte branchée au pc) pour la renseigner dans l'editeur Unity dans le paramètre "Host" du script "ConnectedSmoker.cs".
