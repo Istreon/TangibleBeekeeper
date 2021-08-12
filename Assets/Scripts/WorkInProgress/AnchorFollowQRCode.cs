@@ -4,6 +4,9 @@ public class AnchorFollowQRCode : MonoBehaviour
 {
     #region Serialized fields
     [SerializeField]
+
+    private GameObject objectToMove;
+    [SerializeField]
     private Transform QRCodeLinked;
     #endregion
 
@@ -25,18 +28,24 @@ public class AnchorFollowQRCode : MonoBehaviour
             Debug.LogError("QRCode reference missing ", this);
             this.enabled = false;
         }
-
-        Transform parent = gameObject.transform.parent;
-        if (parent == null)
+        if(objectToMove==null)
         {
-            Debug.LogError("This gameobject must have a parent  ", this);
-            this.enabled = false;
+            Transform parent = gameObject.transform.parent;
+            if (parent == null)
+            {
+                Debug.LogError("This gameobject must have a parent  ", this);
+                this.enabled = false;
 
-        }
-        else
+            }
+            else
+            {
+                parentObject = parent.gameObject;
+            }
+        } else
         {
-            parentObject = parent.gameObject;
+            parentObject = objectToMove;
         }
+
         lastPosition = this.transform.position;
         lastRotation = this.transform.rotation;
     }
@@ -51,10 +60,8 @@ public class AnchorFollowQRCode : MonoBehaviour
             lastPosition = QRCodeLinked.position;
 
             //Update Rotation
-            Vector3 rotDiff = Vector3.zero;
-            rotDiff = QRCodeLinked.rotation.eulerAngles - transform.rotation.eulerAngles;
-
-            parentObject.transform.Rotate(rotDiff, Space.Self);
+            Quaternion diff=QRCodeLinked.rotation * Quaternion.Inverse(transform.rotation);
+            parentObject.transform.rotation = diff * parentObject.transform.rotation;
             lastRotation = QRCodeLinked.rotation;
         }
     }

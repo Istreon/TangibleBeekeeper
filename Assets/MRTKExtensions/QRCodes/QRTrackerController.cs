@@ -12,6 +12,9 @@ namespace MRTKExtensions.QRCodes
         [SerializeField]
         private string locationQrValue = string.Empty;
 
+        [SerializeField]
+        private bool continuedTracking = true;
+
         private Transform markerHolder;
         private AudioSource audioSource;
         private GameObject markerDisplay;
@@ -97,11 +100,11 @@ namespace MRTKExtensions.QRCodes
 
         private void SetPosition(object sender, Pose pose)
         {
-            IsTrackingActive = false; //Disable tracking
+            if(!continuedTracking) IsTrackingActive = false; //Disable tracking
             markerHolder.localScale = Vector3.one * lastMessage.PhysicalSideLength;
             markerDisplay.SetActive(true);
             PositionSet?.Invoke(this, pose);
-            audioSource.Play();
+            //audioSource.Play();
         }
 
         public EventHandler<Pose> PositionSet;
