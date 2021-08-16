@@ -17,4 +17,7 @@ Différents gameobjects composent la scène :
 - **PhotonLauncher** permet de se connecter au réseau photon, et ainsi au projet RV si celui ci est lancé.
 - **3DTexts** contient des textes en 3D qui sont affichés durant la simulation. Ils offrent ainsi des informations à l'utilisateur, comme l'état de connection au serveur.
 - **MixedRealityToolkit**, **MixedRealityPlayspace**, **MixedRealitySceneContent** sont les gameObjects provenant de l'API MRTK pour l'hololens2. Ils offrent l'essentiel pour utiliser un Hololens2 en RA.
-- **HologramCollection** contient les différents composant permettant le tracking QR code, mais aussi la ruche virtuelle et ses composants.
+- **HologramCollection** contient les différents composant permettant le tracking QR code, mais aussi la ruche virtuelle et ses composants.  
+
+Un fois connecté au serveur photon, la position de la ruche virtuelle et de ses différents composants sont récupéré et mis à jour en continu. Pour pouvoir superposer la ruche virtuelle sur la ruche réelle, un tracking QR code est utilisé. Ainsi, la détection du QR code va permettre de déplacer l'ensemble des éléments de la ruche à la bonne position pour coincider avec leur version réelle.
+Le visuel actuel du cadre est aussi mis à jour.
