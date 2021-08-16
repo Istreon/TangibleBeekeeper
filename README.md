@@ -10,7 +10,8 @@ Dans un contecte plus réaliste avefc des vrais apiculteur, cela permettrait à 
 
 
 ## Le contenu du projet
-![Start menu screenshot](/docs/AR_hierarchie.PNG)
+![Start menu screenshot](/docs/AR_hierarchie.PNG)  
+
 Différents gameobjects composent la scène :
 - **Lights** contient les différents éclairages de la scène
 - **PhotonLauncher** permet de se connecter au réseau photon, et ainsi au projet RV si celui ci est lancé.
