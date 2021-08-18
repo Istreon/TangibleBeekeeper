@@ -764,6 +764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fede60a85745a7a459a678a5fa110283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToMove: {fileID: 0}
   QRCodeLinked: {fileID: 1300102675}
 --- !u!1 &344875233
 GameObject:
@@ -1223,6 +1224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spatialGraphCoordinateSystemSetter: {fileID: 1826044843}
   locationQrValue: tracking_cadre_1_QR_2
+  continuedTracking: 1
 --- !u!1 &512073533 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6338688619145242681, guid: 4f78c90a98f19744c812c9733bba0627, type: 3}
@@ -1334,6 +1336,53 @@ Transform:
   m_Father: {fileID: 23477862}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &642737844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 642737845}
+  - component: {fileID: 642737846}
+  m_Layer: 0
+  m_Name: Tracker6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &642737845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642737844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1773220822}
+  m_Father: {fileID: 2429440178548443590}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &642737846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642737844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c22ee3dd9c243b49a9c3245ff376527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spatialGraphCoordinateSystemSetter: {fileID: 1773220824}
+  locationQrValue: GrosQRCodeTest
+  continuedTracking: 1
 --- !u!1 &661792844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,6 +1459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spatialGraphCoordinateSystemSetter: {fileID: 56959113}
   locationQrValue: tracking_cadre_1_QR_3
+  continuedTracking: 1
 --- !u!1001 &683401442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2508,6 +2558,36 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6471292270237974838, guid: b33cb8bef5cce4f4fadf32c477c5431c, type: 3}
   m_PrefabInstance: {fileID: 1034801203}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1060262111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1060262112}
+  m_Layer: 0
+  m_Name: Anchor_TrackedObjects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1060262112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060262111}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1410912085}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1073696190
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,6 +2692,7 @@ GameObject:
   - component: {fileID: 1213845779}
   - component: {fileID: 1213845778}
   - component: {fileID: 1213845782}
+  - component: {fileID: 1213845777}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2633,6 +2714,29 @@ Transform:
   m_Father: {fileID: 1737306222}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1213845777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213845775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf98dd1206224111a38765365e98e207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockCursorWhenFocusLocked: 1
+  setCursorInvisibleWhenFocusLocked: 0
+  maxGazeCollisionDistance: 10
+  raycastLayerMasks:
+  - serializedVersion: 2
+    m_Bits: 4294967291
+  stabilizer:
+    storedStabilitySamples: 60
+  gazeTransform: {fileID: 0}
+  minHeadVelocityThreshold: 0.5
+  maxHeadVelocityThreshold: 2
 --- !u!114 &1213845778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3243,6 +3347,96 @@ Transform:
   m_Father: {fileID: 1330796318}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1403308089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403308090}
+  - component: {fileID: 1403308091}
+  m_Layer: 0
+  m_Name: GameObject (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1403308090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403308089}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -0, y: 0.161, z: 0.002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5178496189816217587}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
+--- !u!114 &1403308091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403308089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fede60a85745a7a459a678a5fa110283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToMove: {fileID: 0}
+  QRCodeLinked: {fileID: 1060262112}
+--- !u!1 &1410912084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1410912085}
+  - component: {fileID: 1410912086}
+  m_Layer: 0
+  m_Name: TrackedObjectsHolder (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1410912085
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410912084}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1060262112}
+  m_Father: {fileID: 2429440176748151405}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1410912086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410912084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52545897e2457bf40a76238605f2b108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackerController: {fileID: 642737846}
 --- !u!1 &1427106990
 GameObject:
   m_ObjectHideFlags: 0
@@ -3472,6 +3666,89 @@ Transform:
   m_Father: {fileID: 837062667}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1594087659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1594087660}
+  - component: {fileID: 1594087661}
+  m_Layer: 0
+  m_Name: Marker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1594087660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594087659}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 1773220822}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!212 &1594087661
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594087659}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 428145e2c80922f4ea7253ac0051274f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 10, y: 10}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1596336406
 GameObject:
   m_ObjectHideFlags: 0
@@ -3518,6 +3795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spatialGraphCoordinateSystemSetter: {fileID: 702718892}
   locationQrValue: tracking_cadre_1_QR_4
+  continuedTracking: 1
 --- !u!1 &1611801386 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6582459331652484190, guid: b33cb8bef5cce4f4fadf32c477c5431c, type: 3}
@@ -3724,6 +4002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fede60a85745a7a459a678a5fa110283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToMove: {fileID: 0}
   QRCodeLinked: {fileID: 1942799764}
 --- !u!1 &1719403149
 GameObject:
@@ -4149,6 +4428,147 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackerController: {fileID: 1988206634}
+--- !u!1 &1773220821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1773220822}
+  - component: {fileID: 1773220824}
+  - component: {fileID: 1773220823}
+  m_Layer: 0
+  m_Name: TrackerHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1773220822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773220821}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1594087660}
+  m_Father: {fileID: 642737845}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1773220823
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773220821}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 312c401bc16b12b45abbad386a96c228, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1773220824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773220821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32eadfc942c9b17429bfd00b65a1a869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1797741979
 GameObject:
   m_ObjectHideFlags: 0
@@ -4225,6 +4645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spatialGraphCoordinateSystemSetter: {fileID: 978284277}
   locationQrValue: tracking_cadre_1_QR_1
+  continuedTracking: 1
 --- !u!4 &1807521445
 Transform:
   m_ObjectHideFlags: 0
@@ -4636,6 +5057,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spatialGraphCoordinateSystemSetter: {fileID: 1719403152}
   locationQrValue: tracking_cadre_1_QR_5
+  continuedTracking: 1
 --- !u!1 &2058786920 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6338688620677834199, guid: 4f78c90a98f19744c812c9733bba0627, type: 3}
@@ -4684,6 +5106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fede60a85745a7a459a678a5fa110283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToMove: {fileID: 0}
   QRCodeLinked: {fileID: 1967739857}
 --- !u!1 &2065543021
 GameObject:
@@ -5384,6 +5807,7 @@ Transform:
   - {fileID: 2075379413}
   - {fileID: 1966301348}
   - {fileID: 1766330483}
+  - {fileID: 1410912085}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5658,6 +6082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spatialGraphCoordinateSystemSetter: {fileID: 2429440178440576279}
   locationQrValue: QrCodePlacemementRucheReelle
+  continuedTracking: 1
 --- !u!4 &2429440177110960328
 Transform:
   m_ObjectHideFlags: 0
@@ -6838,6 +7263,7 @@ Transform:
   - {fileID: 669246602}
   - {fileID: 1596336407}
   - {fileID: 1988206633}
+  - {fileID: 642737845}
   m_Father: {fileID: 2429440176748151405}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6941,6 +7367,7 @@ Transform:
   - {fileID: 325158067}
   - {fileID: 2063862298}
   - {fileID: 102384186}
+  - {fileID: 1403308090}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
