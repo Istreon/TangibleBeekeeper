@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/StartMenu.unity
     guid: 53058e806491904498ef5107d6801086
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/HololensClient.unity
     guid: f36038644e493b34298d9140e9c23fe6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestHololensStandAlone.unity
     guid: 1fc9a2d7535f6df40b3f203f7eb11f5b
   m_configObjects:
