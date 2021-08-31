@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Environment",
+                    "type": "Button",
+                    "id": "fa180070-bda9-4379-8ddf-3e31d5a11f1a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -61,7 +69,7 @@
                 {
                     "name": "",
                     "id": "fcda0df5-10ec-455e-b91f-4b74f228646f",
-                    "path": "<XRController>{RightHand}/joystickClicked",
+                    "path": "<XRController>{RightHand}/primaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -110,6 +118,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SaveDataWeight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a923800-2240-415d-96d3-a9ca6b59a765",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Environment",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
