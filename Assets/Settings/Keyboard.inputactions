@@ -60,6 +60,17 @@
                 },
                 {
                     "name": "",
+                    "id": "fcda0df5-10ec-455e-b91f-4b74f228646f",
+                    "path": "<XRController>{RightHand}/joystickClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Calibrate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "627e7b61-8971-4f82-80a2-7c03a1e3d3a5",
                     "path": "<Keyboard>/#(N)",
                     "interactions": "",
